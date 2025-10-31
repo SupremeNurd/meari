@@ -1,0 +1,87 @@
+<div class="sidebar-wrapper">
+    <div class="sidebar sidebar-collapse" id="sidebar">
+        <div class="sidebar__menu-group">
+            <ul class="sidebar_nav">
+                <li class="sidebar-item">
+                    <a href="index.html" class="sidebar-link">
+                        <span class="sidebar-icon fas fa-sitemap"></span>
+                        <span class="sidebar-title">대시보드</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a href="rescue.html" class="sidebar-link">
+                        <span class="sidebar-icon fas fa-chart-bar"></span>
+                        <span class="sidebar-title">구조현황</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a href="analyze.html" class="sidebar-link">
+                        <span class="sidebar-icon fas fa-chart-pie"></span>
+                        <span class="sidebar-title">분석</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a href="broadcast.html" class="sidebar-link">
+                        <span class="sidebar-icon fas fa-bullhorn"></span>
+                        <span class="sidebar-title">방송</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a href="setting.html" class="sidebar-link">
+                        <span class="sidebar-icon fas fa-cog"></span>
+                        <span class="sidebar-title">설정</span>
+                    </a>
+                </li>
+<!--                <li>-->
+<!--                    <a href="changelog.html" class="">-->
+<!--                        <span class="nav-icon uil uil-arrow-growth"></span>-->
+<!--                        <span class="menu-text">Changelog</span>-->
+<!--                        <span class="badge badge-info-10 menuItem rounded-pill">1.1.6</span>-->
+<!--                    </a>-->
+<!--                </li>-->
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // 현재 페이지 주소를 가져옴
+        const currentPath = window.location.pathname;
+        const currentPage = currentPath.split('/').pop() || 'index.html';
+
+        // 헤더 파일에 있는 타이틀 요소를 찾기
+        const headerTitleElement = document.querySelector('.header-main-title');
+
+        // 사이드바 파일에 있는 모든 링크를 찾기
+        const sidebarLinks = document.querySelectorAll('.sidebar_nav .sidebar-link');
+
+        // 링크들을 확인하며 현재 페이지와 일치하는 링크를 찾기
+        sidebarLinks.forEach(link => {
+            const linkPage = link.getAttribute('href').split('/').pop();
+
+            if (currentPage === linkPage) {
+                // 일치하는 링크에 'active' 클래스 부여
+                link.classList.add('active');
+
+                // 일치하는 링크 안의 '.sidebar-title' 텍스트를 가져옴
+                const activeMenuTitle = link.querySelector('.sidebar-title')?.textContent;
+
+                // 헤더 타이틀의 텍스트를 6번에서 찾은 사이드바 메뉴명으로 변경
+                if (headerTitleElement && activeMenuTitle) {
+                    headerTitleElement.textContent = activeMenuTitle;
+                }
+
+                // 부모 메뉴 열기 등 나머지 코드는 생략
+                const parentLi = link.closest('li.has-child');
+                if (parentLi) {
+                    parentLi.classList.add('open');
+                }
+            }
+        });
+    });
+</script>

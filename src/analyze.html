@@ -1,0 +1,528 @@
+@@include('./include/_head.html')
+
+<body class="layout-light side-menu">
+
+@@include('./include/_header_menu.html')
+
+<main class="main-content">
+
+    @@include('./include/_sidebar_menu.html')
+
+    <div class="dashboard-container">
+
+        <section class="dashboard-section section-map">
+            <img src="img/meari-map.jpg" alt="메아리 지도">
+        </section>
+
+        <section class="dashboard-section section-list">
+            <div class="sensor-list-container">
+                <header class="sensor-list-header">
+                    <h6>검출된 신호</h6>
+                    <div>
+                        <div class="dropdown dropdown-fixed">
+                            <a href="#"
+                               class="text-decoration-none text-dark"
+                               data-bs-toggle="dropdown"
+                               aria-expanded="false"
+                               data-bs-auto-close="outside"
+                            >
+                                <i class="fas fa-calendar-alt calendar-popup"></i>
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu--dynamic dropdown-menu-end calender-wrapper">
+                                <h5>2025년 12월</h5>
+                                <p class="small text-muted mb-2">
+                                    파란색 날짜는 음성신호가 검출된 날짜입니다.
+                                </p>
+                                <div>
+                                    <div class="date-picker">
+                                        <div class="date-picker__calendar"></div>
+                                    </div>
+                                </div>
+
+                                <div class="checkbox-theme-default custom-checkbox ">
+                                    <input class="checkbox" type="checkbox" id="check-1">
+                                    <label for="check-1">
+                                        <span class="checkbox-text">오늘 데이터만 보기</span>
+                                    </label>
+                                </div>
+                                <div class="d-flex justify-content-end mt-3">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-dismiss="dropdown">
+                                        취소
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-primary ms-2" data-bs-dismiss="dropdown">
+                                        확인
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dropdown dropdown-fixed">
+                            <a href="#"
+                               class="text-decoration-none text-dark"
+                               data-bs-toggle="dropdown"
+                               aria-expanded="false"
+                               data-bs-auto-close="outside" >
+                                <i class="fas fa-sliders-h filtering-popup"></i>
+                            </a>
+
+                            <!-- 필터링 설정 팝업-->
+                            <div class="dropdown-menu dropdown-menu--dynamic dropdown-menu-end calender-wrapper">
+                                <div class="filtering-title">
+                                    <h5>필터링 설정</h5>
+                                    <button type="button" class="filtering-reset-btn">
+                                        초기화
+                                    </button>
+                                </div>
+                                <p class="filtering-sub-title">
+                                    시간설정
+                                </p>
+                                <div class="filtering-time-wrapper">
+                                    <div class="filtering-time-input">
+                                        <input type="number" value="0" min="0" max="23" class="filtering-time-value"> 시
+                                        <input type="number" value="0" min="0" max="59" class="filtering-time-value"> 분
+                                        <input type="number" value="0" min="0" max="59" class="filtering-time-value"> 초
+                                    </div>
+                                    <span>~</span>
+                                    <div class="filtering-time-input">
+                                        <input type="number" value="0" min="0" max="23" class="filtering-time-value"> 시
+                                        <input type="number" value="0" min="0" max="59" class="filtering-time-value"> 분
+                                        <input type="number" value="0" min="0" max="59" class="filtering-time-value"> 초
+                                    </div>
+                                </div>
+
+                                <p class="filtering-sub-title">
+                                    센서 설정
+                                </p>
+                                <div class="row g-2 filtering-sensor-grid">
+                                    <div class="col-3">
+                                        <button type="button" class="filtering-sensor-btn active">
+                                            <div class="filtering-sensor-icon">
+                                                <div class="sensor-icon active">
+                                                    <img src="img/sensor_icon/portable_icon.png" alt="Injection Icon" class="sensor-custom-icon">
+                                                </div>
+                                            </div>
+                                            <span class="filtering-sensor-name">휴대용 1호기</span>
+                                        </button>
+                                    </div>
+                                    <div class="col-3">
+                                        <button type="button" class="filtering-sensor-btn">
+                                            <div class="filtering-sensor-icon">
+                                                <div class="sensor-icon active">
+                                                    <img src="img/sensor_icon/portable_icon.png" alt="Injection Icon" class="sensor-custom-icon">
+                                                </div>
+                                            </div>
+                                            <span class="filtering-sensor-name">휴대용 2호기</span>
+                                        </button>
+                                    </div>
+                                    <div class="col-3">
+                                        <button type="button" class="filtering-sensor-btn">
+                                            <div class="filtering-sensor-icon">
+                                                <div class="sensor-icon active">
+                                                    <img src="img/sensor_icon/portable_icon.png" alt="Injection Icon" class="sensor-custom-icon">
+                                                </div>
+                                            </div>
+                                            <span class="filtering-sensor-name">휴대용 3호기</span>
+                                        </button>
+                                    </div>
+                                    <div class="col-3">
+                                        <button type="button" class="filtering-sensor-btn">
+                                            <div class="filtering-sensor-icon">
+                                                <div class="sensor-icon active">
+                                                    <img src="img/sensor_icon/portable_icon.png" alt="Injection Icon" class="sensor-custom-icon">
+                                                </div>
+                                            </div>
+                                            <span class="filtering-sensor-name">휴대용 4호기</span>
+                                        </button>
+                                    </div>
+                                    <div class="col-3">
+                                        <button type="button" class="filtering-sensor-btn">
+                                            <div class="filtering-sensor-icon">
+                                                <div class="sensor-icon active">
+                                                    <img src="img/sensor_icon/injection_icon.png" alt="Injection Icon" class="sensor-custom-icon">
+                                                </div>
+                                            </div>
+                                            <span class="filtering-sensor-name">투입형 1호기</span>
+                                        </button>
+                                    </div>
+                                    <div class="col-3">
+                                        <button type="button" class="filtering-sensor-btn">
+                                            <div class="filtering-sensor-icon">
+                                                <div class="sensor-icon active">
+                                                    <img src="img/sensor_icon/injection_icon.png" alt="Injection Icon" class="sensor-custom-icon">
+                                                </div>
+                                            </div>
+                                            <span class="filtering-sensor-name">투입형 2호기</span>
+                                        </button>
+                                    </div>
+                                    <div class="col-3">
+                                        <button type="button" class="filtering-sensor-btn">
+                                            <div class="filtering-sensor-icon">
+                                                <div class="sensor-icon active">
+                                                    <img src="img/sensor_icon/injection_icon.png" alt="Injection Icon" class="sensor-custom-icon">
+                                                </div>
+                                            </div>
+                                            <span class="filtering-sensor-name">투입형 3호기</span>
+                                        </button>
+                                    </div>
+                                    <div class="col-3">
+                                        <button type="button" class="filtering-sensor-btn">
+                                            <div class="filtering-sensor-icon">
+                                                <div class="sensor-icon active">
+                                                    <img src="img/sensor_icon/injection_icon.png" alt="Injection Icon" class="sensor-custom-icon">
+                                                </div>
+                                            </div>
+                                            <span class="filtering-sensor-name">투입형 4호기</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <p class="small text-muted mb-2 mt-3">신호 필터링</p>
+                                <div class="filtering-signal-wrapper">
+                                    <div class="filtering-signal-icon-btn">
+                                        <img src="img/sensor_icon/animal.png" alt="animal Icon" class="filtering-signal-icon">
+                                    </div>
+                                    <div class="filtering-signal-icon-btn">
+                                        <img src="img/sensor_icon/cough.png" alt="Cough Icon" class="filtering-signal-icon">
+                                    </div>
+                                    <div class="filtering-signal-icon-btn">
+                                        <img src="img/sensor_icon/danger.png" alt="Cough Icon" class="filtering-signal-icon">
+                                    </div>
+                                    <div class="filtering-signal-icon-btn">
+                                        <img src="img/sensor_icon/moan.png" alt="Cough Icon" class="filtering-signal-icon">
+                                    </div>
+                                    <div class="filtering-signal-icon-btn">
+                                        <img src="img/sensor_icon/shout.png" alt="Cough Icon" class="filtering-signal-icon">
+                                    </div>
+                                    <div class="filtering-signal-icon-btn">
+                                        <img src="img/sensor_icon/sos.png" alt="Cough Icon" class="filtering-signal-icon">
+                                    </div>
+                                    <div class="filtering-signal-icon-btn">
+                                        <img src="img/sensor_icon/whistle.png" alt="Cough Icon" class="filtering-signal-icon">
+                                    </div>
+                                    <div class="filtering-signal-icon-btn">
+                                        <img src="img/sensor_icon/none.png" alt="Cough Icon" class="filtering-signal-icon">
+                                    </div>
+                                </div>
+
+                                <div class="d-flex justify-content-end mt-3">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-dismiss="dropdown">
+                                        취소
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-primary ms-2" data-bs-dismiss="dropdown">
+                                        확인
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </header>
+                <div class="analyze-sensor-time-range">
+                    <p>2025-10-23 14:02:25 ~ 2025-10-23 14:02:25</p>
+                </div>
+
+                <div class="sensor-list-body">
+                    <div class="dm-collapse dm-collapse-custom">
+
+                        <div class="dm-collapse-item mb-2">
+                            <div class="dm-collapse-item__header " id="analyze-sensor-group-01">
+                                <a href="#" class="item-link analyze-sensor-wrapper" data-bs-toggle="collapse" data-bs-target="#collapse-body-c-1" aria-expanded="false">
+                                    <div class="analyze-sensor-info-top">
+                                        <div class="analyze-sensor-details">
+                                            <span class="sensor-status active"></span>
+                                            <span class="sensor-name">
+                                                휴대용 센서 1호기
+                                            </span>
+                                        </div>
+                                        <div class="analyze-time-group">
+                                            <p class="analyze-sensor-name">
+                                                2025-10-23 14:02:25
+                                            </p>
+                                            <div class="analyze-sensor-activity-icons">
+                                                <div class="analyze-activity-icon">
+                                                    <img src="img/sensor_icon/cough.png" alt="Cough Icon" class="activity-custom-icon">
+                                                </div>
+                                                <div class="analyze-activity-icon">
+                                                    <img src="img/sensor_icon/animal.png" alt="Animal Icon" class="activity-custom-icon">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <i class="la la-angle-right"></i>
+                                </a>
+                            </div>
+                            <div id="collapse-body-c-1" class="collapse dm-collapse-item__body">
+                                <div class="analyze-data-list">
+                                    <p class="analyze-sensor-time">
+                                        2025-10-23 14:02:25
+                                    </p>
+                                    <img src="img/sensor_icon/cough.png" alt="Cough Icon" class="activity-custom-icon">
+                                    <p class="analyze-sensor-section">
+                                        10초
+                                    </p>
+                                </div>
+                                <div class="analyze-data-list">
+                                    <p class="analyze-sensor-time">
+                                        2025-10-23 14:02:35
+                                    </p>
+                                    <img src="img/sensor_icon/cough.png" alt="Cough Icon" class="activity-custom-icon">
+                                    <p class="analyze-sensor-section">
+                                        25초
+                                    </p>
+                                </div>
+                                <div class="analyze-data-list">
+                                    <p class="analyze-sensor-time">
+                                        2025-10-23 14:02:45
+                                    </p>
+                                    <img src="img/sensor_icon/cough.png" alt="Cough Icon" class="activity-custom-icon">
+                                    <p class="analyze-sensor-section">
+                                        17초
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dm-collapse-item mb-2">
+                            <div class="dm-collapse-item__header" id="analyze-sensor-group-02">
+                                <a href="#" class="item-link analyze-sensor-wrapper" data-bs-toggle="collapse" data-bs-target="#collapse-body-c-2" aria-expanded="false">
+                                    <div class="analyze-sensor-info-top">
+                                        <div class="analyze-sensor-details">
+                                            <span class="sensor-status active"></span>
+                                            <span class="sensor-name">
+                                                휴대용 센서 2호기
+                                            </span>
+                                        </div>
+                                        <div class="analyze-time-group">
+                                            <p class="analyze-sensor-name">
+                                                2025-10-23 14:02:25
+                                            </p>
+                                            <div class="analyze-sensor-activity-icons">
+                                                <div class="analyze-activity-icon">
+                                                    <img src="img/sensor_icon/cough.png" alt="Cough Icon" class="activity-custom-icon">
+                                                </div>
+                                                <div class="analyze-activity-icon">
+                                                    <img src="img/sensor_icon/animal.png" alt="Animal Icon" class="activity-custom-icon">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <i class="la la-angle-right"></i>
+                                </a>
+                            </div>
+                            <div id="collapse-body-c-2" class="collapse dm-collapse-item__body">
+                                <div class="analyze-data-list">
+                                    <p class="analyze-sensor-time">
+                                        2025-10-23 14:02:25
+                                    </p>
+                                    <img src="img/sensor_icon/cough.png" alt="Cough Icon" class="activity-custom-icon">
+                                    <p class="analyze-sensor-section">
+                                        10초
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dm-collapse-item mb-2">
+                            <div class="dm-collapse-item__header" id="analyze-sensor-group-03">
+                                <a href="#" class="item-link analyze-sensor-wrapper"
+                                   data-bs-toggle="collapse"
+                                   data-bs-target="#collapse-body-c-3" aria-expanded="false">
+                                    <div class="analyze-sensor-info-top">
+                                        <div class="analyze-sensor-details">
+                                            <span class="sensor-status active"></span>
+                                            <span class="sensor-name">
+                                                휴대용 센서 3호기
+                                            </span>
+                                        </div>
+                                        <div class="analyze-time-group">
+                                            <p class="analyze-sensor-name">
+                                                2025-10-23 14:02:25
+                                            </p>
+                                            <div class="analyze-sensor-activity-icons">
+                                                <div class="analyze-activity-icon">
+                                                    <img src="img/sensor_icon/cough.png" alt="Cough Icon" class="activity-custom-icon">
+                                                </div>
+                                                <div class="analyze-activity-icon">
+                                                    <img src="img/sensor_icon/animal.png" alt="Animal Icon" class="activity-custom-icon">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <i class="la la-angle-right"></i>
+                                </a>
+                            </div>
+                            <div id="collapse-body-c-3" class="collapse dm-collapse-item__body">
+                                <div class="analyze-data-list">
+                                    <p class="analyze-sensor-time">
+                                        2025-10-25 14:02:25
+                                    </p>
+                                    <img src="img/sensor_icon/cough.png" alt="Cough Icon" class="activity-custom-icon">
+                                    <p class="analyze-sensor-section">
+                                        10초
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <div class="sound-controller">
+            <div id="sensor-detail-popup">
+                <div class="sensor-detail-wrapper">
+                    <div class="">
+                        <span class="sensor-status active"></span>
+                        <span id="popup-sensor-name">센서 상세 정보</span>
+                        <span id="popup-sensor-time">검출 시간</span>
+                    </div>
+                    <div class="sound-control-bar">
+                        <div class="sound-button-group">
+                            <div>
+                                <button class="sound-control-button">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                                <button class="sound-control-button">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                            <div class="divider"></div>
+                            <div>
+                                <button class="sound-control-button">
+                                    <i class="fas fa-pause"></i>
+                                </button>
+                                <button class="sound-control-button">
+                                    <i class="fas fa-retweet"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="sound-volume-control">
+                            <i class="fas fa-volume-down"></i>
+                            <input type="range" class="sound-control-slider" min="0" max="100" value="60" />
+                        </div>
+                    </div>
+                </div>
+                <img src="img/sound-wave.png" alt="" width="100%">
+                <button id="popup-close-btn" aria-label="닫기">&times;</button>
+            </div>
+        </div>
+
+    </div>
+
+    @@include('./include/_footer.html')
+
+    <div id="overlayer">
+        <div class="loader-overlay">
+            <div class="dm-spin-dots spin-lg">
+                <span class="spin-dot badge-dot dot-primary"></span>
+                <span class="spin-dot badge-dot dot-primary"></span>
+                <span class="spin-dot badge-dot dot-primary"></span>
+                <span class="spin-dot badge-dot dot-primary"></span>
+            </div>
+        </div>
+    </div>
+    <div class="overlay-dark-sidebar"></div>
+    <div class="customizer-overlay"></div>
+</main>
+
+@@include('./include/_scripts.html')
+
+<script src="assets/theme_assets/js/map.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        const sensorCards = document.querySelectorAll('.sensor-card');
+        const popupBox = document.getElementById('sensor-detail-popup');
+        const closeButton = document.getElementById('popup-close-btn');
+        const popupSensorName = document.getElementById('popup-sensor-name');
+        const popupSensorTime = document.getElementById('popup-sensor-time');
+
+        let fixedDropdownElements = document.querySelectorAll('.dropdown-fixed');
+        const headerDropdownToggles = document.querySelectorAll('.sensor-list-header .dropdown [data-bs-toggle="dropdown"]');
+        const dataListItems = document.querySelectorAll('.analyze-data-list');
+
+        // 팝업 닫기 버튼 이벤트
+        closeButton.addEventListener('click', function() {
+            popupBox.classList.remove('show');
+        });
+
+        // 드롭다운 'fixed'
+        fixedDropdownElements.forEach(function(element) {
+            var toggleButton = element.querySelector('[data-bs-toggle="dropdown"]');
+            new bootstrap.Dropdown(toggleButton, {
+                popperConfig: {
+                    strategy: 'fixed'
+                }
+            });
+        });
+
+        //드롭다운 상호 배제 로직 (하나 열리면 다른거 닫기)
+        headerDropdownToggles.forEach(function(currentToggle) {
+            currentToggle.addEventListener('show.bs.dropdown', function(event) {
+                headerDropdownToggles.forEach(function(otherToggle) {
+                    if (otherToggle !== event.target) {
+                        const dropdownInstance = bootstrap.Dropdown.getInstance(otherToggle);
+                        if (dropdownInstance) {
+                            dropdownInstance.hide();
+                        }
+                    }
+                });
+            });
+        });
+
+        // 드롭다운 닫기 버튼(취소/확인) 핫와이어링
+        document.querySelectorAll('[data-bs-dismiss="dropdown"]').forEach(function(dismissButton) {
+            dismissButton.addEventListener('click', function(event) {
+                let dropdownWrapper = this.closest('.dropdown');
+                if (dropdownWrapper) {
+                    let toggleButton = dropdownWrapper.querySelector('[data-bs-toggle="dropdown"]');
+                    if (toggleButton) {
+                        let dropdownInstance = bootstrap.Dropdown.getInstance(toggleButton);
+                        if (dropdownInstance) {
+                            dropdownInstance.hide();
+                        }
+                    }
+                }
+            });
+        });
+
+        // analyze-data-list 클릭 이벤트 (팝업 열기)
+        dataListItems.forEach(function(item) {
+            item.addEventListener('click', function() { // 'this'는 클릭된 item (.analyze-data-list)
+
+                // 부모에서 '센서 이름' 가져오기
+                const collapseItem = this.closest('.dm-collapse-item');
+                let sensorName = "센서 상세 정보";
+                if (collapseItem) {
+                    const sensorNameElement = collapseItem.querySelector('.sensor-name');
+                    if (sensorNameElement) {
+                        sensorName = sensorNameElement.textContent.trim();
+                    }
+                }
+                popupSensorName.textContent = sensorName; // 팝업에 센서 이름 설정
+
+                // 클릭된 항목 'this'에서 '검출 시간' 가져오기
+                let sensorTime = "시간 정보 없음"; // 기본값
+                const timeElement = this.querySelector('.analyze-sensor-time'); // 'this'안에서 .analyze-sensor-time 검색
+
+                if (timeElement) {
+                    sensorTime = timeElement.textContent.trim(); // 찾은 시간 텍스트
+                }
+
+                // 팝업의 시간 <span>에 텍스트 설정
+                popupSensorTime.textContent = sensorTime;
+
+                // 팝업 보이기
+                popupBox.classList.add('show');
+            });
+        });
+
+    });
+</script>
+</body>
+
+</html>

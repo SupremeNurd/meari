@@ -1,0 +1,303 @@
+// _rescue.scss
+.contents > .d-flex {
+  width: 100%;
+}
+
+.left-column {
+  flex-basis: 30%;
+  background-color: #f4f5f7;
+  padding: 15px;
+  min-height: 80vh;
+}
+
+.center-column {
+  flex-basis: 40%;
+  padding: 15px;
+}
+
+.right-column {
+  flex-basis: 30%;
+  padding: 15px;
+  min-height: 84vh;
+  max-height: 500px;
+}
+
+.right-column .chat-area {
+  height: 100%;
+  margin-bottom: 0;
+}
+
+.right-column .chat-body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.right-column .chat-box {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.movie-wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+  max-height: 500px;
+  min-height: 74vh;
+  overflow: auto;
+}
+
+.resue-title {
+  padding: 15px 0px 0 21px;
+}
+
+/* 목록 전체의 기본 스타일 */
+.rescue-team-wrapper {
+  min-height: 815px;
+}
+
+.rescue-team-list {
+  max-width: 500px;
+  margin: auto;
+}
+
+/* 그룹 헤더 (중앙통제실, 현장구조팀) */
+.rescue-team-group {
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 5px 10px;
+  color: #333;
+  display: flex;
+  align-items: center;
+}
+
+.rescue-team-icon {
+  margin-right: 8px;
+  font-size: 0.9rem;
+  position: relative;
+  top: -1px;
+}
+
+.rescue-team-item {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.rescue-team-item__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px;
+  cursor: pointer;
+  list-style: none;
+  transition: background-color 0.2s ease;
+}
+
+.rescue-team-item__header::-webkit-details-marker {
+  display: none;
+}
+
+.rescue-team-item__header::marker {
+  display: none;
+}
+
+.rescue-team-item__title {
+  font-weight: 500;
+  color: #222;
+}
+
+.rescue-team-item__toggle-icon {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #888;
+}
+
+.rescue-team-item:not([open]) .rescue-team-item__toggle-plus {
+  display: inline;
+}
+.rescue-team-item:not([open]) .rescue-team-item__toggle-minus {
+  display: none;
+}
+
+.rescue-team-item[open] .rescue-team-item__toggle-plus {
+  display: none;
+}
+.rescue-team-item[open] .rescue-team-item__toggle-minus {
+  display: inline;
+}
+
+.rescue-team-item[open] > .rescue-team-item__header {
+  background-color: #f7f7f7;
+}
+
+.rescue-team-item__content {
+  background-color: #fff;
+}
+
+.rescue-team-item__member {
+  padding: 14px 16px;
+  padding-left: 24px;
+  border-top: 1px solid #f0f0f0;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.rescue-meet {
+  color: #333;
+}
+
+.rescue-meet__date {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 0 0 4px 0;
+}
+
+.rescue-meet__title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #111;
+  margin: 0 0 16px 0;
+}
+
+.rescue-meet__divider {
+  border: 0;
+  height: 1px;
+  background-color: #eeeeee;
+  margin: 0 0 10px 0;
+}
+
+.rescue-meet__details {
+  margin: 0;
+}
+
+.rescue-meet__item {
+  margin-bottom: 20px;
+}
+
+/* 항목의 제목 (장소, 사고일시, 전파사항) */
+.rescue-meet__term {
+  font-weight: bold;
+  font-size: 1rem;
+  color: #222;
+  position: relative;
+  padding-left: 12px;
+}
+
+/* CSS로 점(·) 추가 */
+.rescue-meet__term::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-weight: bold;
+}
+
+.rescue-meet__description {
+  margin: 0;
+  margin-top: 6px;
+  padding-left: 12px;
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.5;
+}
+
+.rescue-event-item {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.rescue-event-item__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7px 10px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.rescue-event-item__header::-webkit-details-marker {
+  display: none;
+}
+
+.rescue-event-item__header::marker {
+  display: none;
+}
+
+.rescue-event-item__left {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+}
+
+.rescue-event-item__icon {
+  margin-right: 8px;
+  font-size: 0.9rem;
+}
+
+.rescue-event-item__title {
+  color: #222;
+}
+
+.rescue-event-item__title active{
+  background-color: #f9f9f9;
+}
+
+.rescue-event-item__right {
+  display: flex;
+  align-items: center;
+}
+
+.rescue-event-item__timestamp {
+  font-size: 0.8rem;
+  margin-right: 12px;
+}
+
+.rescue-event-item__toggle-icon {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #888;
+}
+
+/* --- <details> 태그의 [open] 속성을 이용한 토글 로직 --- */
+
+/* 닫혀있을 때 ( [open] 속성이 없을 때 ) */
+.rescue-event-item:not([open]) .rescue-event-item__toggle-plus {
+  display: inline;
+}
+.rescue-event-item:not([open]) .rescue-event-item__toggle-minus {
+  display: none;
+}
+
+/* 열려있을 때 ( [open] 속성이 있을 때 ) */
+.rescue-event-item[open] .rescue-event-item__toggle-plus {
+  display: none;
+}
+.rescue-event-item[open] .rescue-event-item__toggle-minus {
+  display: inline;
+}
+
+.rescue-event-item__content {
+  padding: 10px 16px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.rescue-event-item__detail {
+  margin: 0 0 0 0;
+  font-size: 0.95rem;
+  color: #444;
+  line-height: 1.5;
+}
+
+.rescue-event-item__detail strong {
+  font-weight: 500;
+  color: #111;
+  margin-right: 5px;
+}

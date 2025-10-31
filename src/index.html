@@ -1,0 +1,375 @@
+@@include('./include/_head.html')
+
+<body class="layout-light side-menu">
+
+@@include('./include/_header_menu.html')
+
+<main class="main-content">
+
+    @@include('./include/_sidebar_menu.html')
+
+    <div class="dashboard-container">
+
+        <section class="dashboard-section section-map">
+            <img src="img/meari-map.jpg" alt="메아리 지도">
+        </section>
+
+        <section class="dashboard-section section-list">
+            <div class="sensor-list-container">
+                <header class="sensor-list-header">
+                    <h6>센서목록</h6>
+                    <i class="fas fa-cog"></i>
+                </header>
+
+                <div class="sensor-list-body">
+
+                    <div class="sensor-card">
+                        <div class="sensor-info-top">
+                            <div class="sensor-icon-wrapper">
+                                <div class="sensor-icon active">
+                                    <img src="img/sensor_icon/portable_icon.png" alt="센서아이콘" class="sensor-custom-icon">
+                                </div>
+                                <span class="sensor-badge">1</span>
+                            </div>
+
+                            <div class="sensor-details">
+                                <span class="sensor-status active">
+                                    연결양호
+                                </span>
+                                <span class="sensor-name">
+                                    휴대용 센서 1호기
+                                </span>
+                            </div>
+
+                            <div class="sensor-status-icons">
+                                <i class="fas fa-signal"></i>
+                                <i class="fas fa-wifi"></i>
+                                <i class="fas fa-battery-three-quarters"></i>
+                                <span>75%</span>
+                            </div>
+                        </div>
+
+                        <div class="sensor-activity-icons">
+                            <div class="activity-icon">
+                                <img src="img/sensor_icon/cough.png" alt="Cough Icon" class="activity-custom-icon">
+                            </div>
+                            <div class="activity-icon">
+                                <img src="img/sensor_icon/animal.png" alt="Animal Icon" class="activity-custom-icon">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sensor-card">
+                        <div class="sensor-info-top">
+                            <div class="sensor-icon-wrapper">
+                                <div class="sensor-icon active">
+                                    <img src="img/sensor_icon/portable_icon.png" alt="Injection Icon" class="sensor-custom-icon">
+                                </div>
+                            </div>
+
+                            <div class="sensor-details">
+                                <span class="sensor-status active">
+                                    연결양호
+                                </span>
+                                <span class="sensor-name">
+                                    휴대용 센서 2호기
+                                </span>
+                            </div>
+
+                            <div class="sensor-status-icons">
+                                <i class="fas fa-signal"></i>
+                                <i class="fas fa-wifi"></i>
+                                <i class="fas fa-battery-three-quarters"></i>
+                                <span>75%</span>
+                            </div>
+                        </div>
+
+                        <div class="sensor-activity-icons">
+                            <div class="activity-icon">
+                                <i class="fas fa-minus"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sensor-card">
+                        <div class="sensor-info-top">
+                            <div class="sensor-icon-wrapper">
+                                <div class="sensor-icon active">
+                                    <img src="img/sensor_icon/portable_icon.png" alt="Injection Icon" class="sensor-custom-icon">
+                                </div>
+                            </div>
+
+                            <div class="sensor-details">
+                                <span class="sensor-status active">
+                                    연결양호
+                                </span>
+                                <span class="sensor-name">
+                                    휴대용 센서 3호기
+                                </span>
+                            </div>
+
+                            <div class="sensor-status-icons">
+                                <i class="fas fa-signal"></i>
+                                <i class="fas fa-wifi"></i>
+                                <i class="fas fa-battery-three-quarters"></i>
+                                <span>35%</span>
+                            </div>
+                        </div>
+
+                        <div class="sensor-activity-icons">
+                            <div class="activity-icon">
+                                <i class="fas fa-minus"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sensor-card">
+                        <div class="sensor-info-top">
+                            <div class="sensor-icon-wrapper">
+                                <div class="sensor-icon active">
+                                    <img src="img/sensor_icon/portable_icon.png" alt="Injection Icon" class="sensor-custom-icon">
+                                </div>
+                            </div>
+
+                            <div class="sensor-details">
+                                <span class="sensor-status active">연결양호</span>
+                                <span class="sensor-name">휴대용 센서 4호기</span>
+                            </div>
+
+                            <div class="sensor-status-icons">
+                                <i class="fas fa-signal"></i>
+                                <i class="fas fa-wifi"></i>
+                                <i class="fas fa-battery-three-quarters"></i>
+                                <span>90</span>
+                            </div>
+                        </div>
+
+                        <div class="sensor-activity-icons">
+                            <div class="activity-icon">
+                                <i class="fas fa-minus"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sensor-card">
+                        <div class="sensor-info-top">
+                            <div class="sensor-icon-wrapper">
+                                <div class="sensor-icon active">
+                                    <img src="img/sensor_icon/injection_icon.png" alt="Injection Icon" class="sensor-custom-icon">
+                                </div>
+                            </div>
+
+                            <div class="sensor-details">
+                                <span class="sensor-status active">연결양호</span>
+                                <span class="sensor-name">투입형 센서 1호기</span>
+                            </div>
+
+                            <div class="sensor-status-icons">
+                                <i class="fas fa-signal"></i>
+                                <i class="fas fa-wifi"></i>
+                                <i class="fas fa-battery-three-quarters"></i>
+                                <span>90</span>
+                            </div>
+                        </div>
+
+                        <div class="sensor-activity-icons justify-content-between">
+                            <div class="activity-icon">
+                                <img src="img/sensor_icon/cough.png" alt="Cough Icon" class="activity-custom-icon">
+                            </div>
+                            <div class="phone-icon-wrapper">
+                                <i class="fas fa-phone phone-icon"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sensor-card">
+                        <div class="sensor-info-top">
+                            <div class="sensor-icon-wrapper">
+                                <div class="sensor-icon active">
+                                    <img src="img/sensor_icon/injection_icon.png" alt="Injection Icon" class="sensor-custom-icon">
+                                </div>
+                            </div>
+
+                            <div class="sensor-details">
+                                <span class="sensor-status active">연결양호</span>
+                                <span class="sensor-name">투입형 센서 2호기</span>
+                            </div>
+
+                            <div class="sensor-status-icons">
+                                <i class="fas fa-signal"></i>
+                                <i class="fas fa-wifi"></i>
+                                <i class="fas fa-battery-three-quarters"></i>
+                                <span>90</span>
+                            </div>
+                        </div>
+
+                        <div class="sensor-activity-icons justify-content-between">
+                            <div class="activity-icon">
+                                <img src="img/sensor_icon/cough.png" alt="Cough Icon" class="activity-custom-icon">
+                            </div>
+                            <div class="phone-icon-wrapper">
+                                <i class="fas fa-phone phone-icon"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sensor-card">
+                        <div class="sensor-info-top">
+                            <div class="sensor-icon-wrapper">
+                                <div class="sensor-icon active">
+                                    <img src="img/sensor_icon/injection_icon.png" alt="Injection Icon" class="sensor-custom-icon">
+                                </div>
+                            </div>
+
+                            <div class="sensor-details">
+                                <span class="sensor-status active">연결양호</span>
+                                <span class="sensor-name">투입형 센서 3호기</span>
+                            </div>
+
+                            <div class="sensor-status-icons">
+                                <i class="fas fa-signal"></i>
+                                <i class="fas fa-wifi"></i>
+                                <i class="fas fa-battery-three-quarters"></i>
+                                <span>90</span>
+                            </div>
+                        </div>
+
+                        <div class="sensor-activity-icons justify-content-between">
+                            <div class="activity-icon">
+                                <img src="img/sensor_icon/cough.png" alt="Cough Icon" class="activity-custom-icon">
+                            </div>
+                            <div class="phone-icon-wrapper">
+                                <i class="fas fa-phone phone-icon"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sensor-card">
+                        <div class="sensor-info-top">
+                            <div class="sensor-icon-wrapper">
+                                <div class="sensor-icon active">
+                                    <img src="img/sensor_icon/injection_icon.png" alt="Injection Icon" class="sensor-custom-icon">
+                                </div>
+                            </div>
+
+                            <div class="sensor-details">
+                                <span class="sensor-status active">연결양호</span>
+                                <span class="sensor-name">투입형 센서 4호기</span>
+                            </div>
+
+                            <div class="sensor-status-icons">
+                                <i class="fas fa-signal"></i>
+                                <i class="fas fa-wifi"></i>
+                                <i class="fas fa-battery-three-quarters"></i>
+                                <span>90</span>
+                            </div>
+                        </div>
+
+                        <div class="sensor-activity-icons justify-content-between">
+                            <div class="activity-icon">
+                                <img src="img/sensor_icon/cough.png" alt="Cough Icon" class="activity-custom-icon">
+                            </div>
+                            <div class="phone-icon-wrapper">
+                                <i class="fas fa-phone phone-icon"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 사운드 컨트롤러 팝업-->
+        <div class="sound-controller">
+            <div id="sensor-detail-popup">
+                <div class="sensor-detail-wrapper">
+                    <div class="">
+                        <span class="sensor-status active"></span>
+                        <span id="popup-sensor-name">
+                        센서 상세 정보
+                    </span>
+                    </div>
+                    <div class="sound-control-bar">
+                        <div class="sound-button-group">
+                            <div>
+                                <button class="sound-control-button">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                                <button class="sound-control-button">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                            <div class="divider"></div>
+                            <div>
+                                <button class="sound-control-button">
+                                    <i class="fas fa-pause"></i>
+                                </button>
+                                <button class="sound-control-button">
+                                    <i class="fas fa-retweet"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="sound-volume-control">
+                            <i class="fas fa-volume-down"></i>
+                            <input type="range" class="sound-control-slider" min="0" max="100" value="60" />
+                        </div>
+                    </div>
+                </div>
+                <img src="img/sound-wave.png" alt="" width="100%">
+                <button id="popup-close-btn" aria-label="닫기">&times;</button>
+            </div>
+        </div>
+
+    </div>
+
+    @@include('./include/_footer.html')
+
+    <div id="overlayer">
+        <div class="loader-overlay">
+            <div class="dm-spin-dots spin-lg">
+                <span class="spin-dot badge-dot dot-primary"></span>
+                <span class="spin-dot badge-dot dot-primary"></span>
+                <span class="spin-dot badge-dot dot-primary"></span>
+                <span class="spin-dot badge-dot dot-primary"></span>
+            </div>
+        </div>
+    </div>
+    <div class="overlay-dark-sidebar"></div>
+    <div class="customizer-overlay"></div>
+</main>
+
+@@include('./include/_scripts.html')
+
+<script src="assets/theme_assets/js/map.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        const sensorCards = document.querySelectorAll('.sensor-card'); // 모든 센서 카드
+        const popupBox = document.getElementById('sensor-detail-popup'); // 하단 팝업 박스
+        const closeButton = document.getElementById('popup-close-btn'); // 팝업 닫기 버튼
+        const popupSensorName = document.getElementById('popup-sensor-name'); // 팝업의 센서 이름 영역
+
+        sensorCards.forEach(function(card) {
+            card.addEventListener('click', function() {
+
+                // 클릭된 카드의 센서 이름을 가져오기
+                const sensorName = card.querySelector('.sensor-name').textContent;
+
+                // 팝업 박스의 제목을 클릭된 센서 이름으로 변경
+                popupSensorName.textContent = sensorName;
+
+                // 팝업 박스에 'show' 클래스를 추가하여 화면에 표시
+                popupBox.classList.add('show');
+            });
+        });
+
+        closeButton.addEventListener('click', function() {
+            popupBox.classList.remove('show');
+        });
+
+    });
+</script>
+</body>
+
+</html>

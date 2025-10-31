@@ -1,0 +1,40 @@
+@@include('./include/_head.html')
+
+<body class="layout-light side-menu">
+
+@@include('./include/_header_menu.html')
+
+   <main class="main-content">
+
+       @@include('./include/_sidebar_menu.html')
+
+      <div class="contents">
+
+         <div class="container-fluid">
+            <div class="row justify-content-center">
+               <div class="col-12">
+
+                  <div class="min-vh-100 content-center">
+                     <div class="error-page text-center">
+                        <img src="img/svg/404.svg" alt="404" class="svg">
+                        <div class="error-page__title">404</div>
+                        <h5 class="fw-500">죄송합니다! 찾으시는 페이지가 존재하지 않습니다.</h5>
+                        <div class="content-center mt-30">
+                           <a href="index.html" class="btn btn-primary btn-default btn-squared px-30">첫 페이지로</a>
+                        </div>
+                     </div>
+                  </div>
+
+               </div>
+            </div>
+         </div>
+
+      </div>
+   </main>
+
+@@include('./include/_footer.html')
+
+@@include('./include/_scripts.html')
+</body>
+
+</html>

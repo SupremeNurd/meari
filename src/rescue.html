@@ -1,0 +1,582 @@
+
+@@include('./include/_head.html')
+
+<body class="layout-light side-menu">
+
+@@include('./include/_header_menu.html')
+
+<main class="main-content">
+
+    @@include('./include/_sidebar_menu.html')
+
+    <div class="rescue-wrapper">
+        <div class="d-flex">
+
+            <!-- 1. 구조대현황-->
+            <div class="left-column">
+                <div class="col-12">
+                    <div class="card card-default card-md rescue-team-wrapper">
+                        <div class="resue-title">
+                            <h6>구조대현황</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="tab-wrapper">
+                                <div class="dm-tab tab-horizontal">
+
+                                    <ul class="nav nav-tabs vertical-tabs" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="tab-v-1-tab" data-bs-toggle="tab" href="#tab-v-1" role="tab" aria-selected="true">
+                                                구조대현황
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="tab-v-2-tab" data-bs-toggle="tab" href="#tab-v-2" role="tab" aria-selected="false">
+                                                회의록
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="tab-v-3-tab" data-bs-toggle="tab" href="#tab-v-3" role="tab" aria-selected="false">
+                                                이벤트
+                                            </a>
+                                        </li>
+                                    </ul>
+
+                                    <div class="tab-content">
+
+                                        <div class="tab-pane fade show active" id="tab-v-1" role="tabpanel" aria-labelledby="tab-v-1-tab">
+                                            <div class="rescue-team-list">
+                                                <div class="rescue-team-group">
+                                                    <span class="rescue-team-icon">
+                                                        <i class="fas fa-clinic-medical"></i>
+                                                    </span>
+                                                    중앙통제실
+                                                </div>
+
+                                                <details class="rescue-team-item">
+                                                    <summary class="rescue-team-item__header">
+                                                        <span class="rescue-team-item__title">A구역 본부</span>
+                                                        <span class="rescue-team-item__toggle-icon rescue-team-item__toggle-plus">+</span>
+                                                        <span class="rescue-team-item__toggle-icon rescue-team-item__toggle-minus">-</span>
+                                                    </summary>
+                                                    <div class="rescue-team-item__content">
+                                                    </div>
+                                                </details>
+
+                                                <div class="rescue-team-group">
+                                                    <span class="rescue-team-icon">
+                                                         <i class="fas fa-user-cog"></i>
+                                                    </span>
+                                                    현장구조팀
+                                                </div>
+
+                                                <details class="rescue-team-item" open>
+                                                    <summary class="rescue-team-item__header">
+                                                        <span class="rescue-team-item__title">A팀 메아리 팀장</span>
+                                                        <span class="rescue-team-item__toggle-icon rescue-team-item__toggle-plus">+</span>
+                                                        <span class="rescue-team-item__toggle-icon rescue-team-item__toggle-minus">-</span>
+                                                    </summary>
+                                                    <div class="rescue-team-item__content">
+                                                        <div class="rescue-team-item__member">메아리 대원</div>
+                                                        <div class="rescue-team-item__member">메아리 대원</div>
+                                                    </div>
+                                                </details>
+
+                                                <details class="rescue-team-item">
+                                                    <summary class="rescue-team-item__header">
+                                                        <span class="rescue-team-item__title">B팀 메아리 팀장</span>
+                                                        <span class="rescue-team-item__toggle-icon rescue-team-item__toggle-plus">+</span>
+                                                        <span class="rescue-team-item__toggle-icon rescue-team-item__toggle-minus">-</span>
+                                                    </summary>
+                                                    <div class="rescue-team-item__content">
+                                                        <div class="rescue-team-item__content">
+                                                            <div class="rescue-team-item__member">메아리 대원</div>
+                                                            <div class="rescue-team-item__member">메아리 대원</div>
+                                                        </div>
+                                                    </div>
+                                                </details>
+
+                                                <details class="rescue-team-item">
+                                                    <summary class="rescue-team-item__header">
+                                                        <span class="rescue-team-item__title">C팀 메아리 팀장</span>
+                                                        <span class="rescue-team-item__toggle-icon rescue-team-item__toggle-plus">+</span>
+                                                        <span class="rescue-team-item__toggle-icon rescue-team-item__toggle-minus">-</span>
+                                                    </summary>
+                                                    <div class="rescue-team-item__content">
+                                                        <div class="rescue-team-item__content">
+                                                            <div class="rescue-team-item__member">메아리 대원</div>
+                                                            <div class="rescue-team-item__member">메아리 대원</div>
+                                                        </div>
+                                                    </div>
+                                                </details>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="tab-pane fade" id="tab-v-2" role="tabpanel" aria-labelledby="tab-v-2-tab">
+                                            <div class="rescue-meet">
+                                                <p class="rescue-meet__date">2025년 10월 23일</p>
+                                                <h2 class="rescue-meet__title">메아리 시 붕괴현장 구조 대책</h2>
+                                                <hr class="rescue-meet__divider">
+                                                <dl class="rescue-meet__details">
+                                                    <div class="rescue-meet__item">
+                                                        <dt class="rescue-meet__term">장소</dt>
+                                                        <dd class="rescue-meet__description">메아리 아파트 지하3층</dd>
+                                                    </div>
+                                                    <div class="rescue-meet__item">
+                                                        <dt class="rescue-meet__term">사고일시</dt>
+                                                        <dd class="rescue-meet__description">2025년 10월 20일 17시 35분경</dd>
+                                                    </div>
+
+                                                    <div class="rescue-meet__item">
+                                                        <dt class="rescue-meet__term">전파사항</dt>
+                                                        <dd class="rescue-meet__description">
+                                                            구조장비 필히 착용
+                                                            <br>
+                                                            유해가스 주의
+                                                        </dd>
+                                                    </div>
+
+                                                </dl>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="tab-pane fade" id="tab-v-3" role="tabpanel" aria-labelledby="tab-v-3-tab">
+                                            <div class="rescue-event-list">
+
+                                                <details class="rescue-event-item" open>
+                                                    <summary class="rescue-event-item__header">
+                                                        <div class="rescue-event-item__left">
+                                                            <span class="rescue-event-item__icon">
+                                                                 <i class="fas fa-exclamation-circle"></i>
+                                                            </span>
+                                                            <span class="rescue-event-item__title">이상신호 포착</span>
+                                                        </div>
+                                                        <div class="rescue-event-item__right">
+                                                            <span class="rescue-event-item__timestamp">
+                                                                2025-10-23 오후 4:17:13
+                                                            </span>
+                                                            <span class="rescue-event-item__toggle-icon rescue-event-item__toggle-plus">+</span>
+                                                            <span class="rescue-event-item__toggle-icon rescue-event-item__toggle-minus">-</span>
+                                                        </div>
+                                                    </summary>
+                                                    <div class="rescue-event-item__content">
+                                                        <p class="rescue-event-item__detail">
+                                                            <strong>위치 :</strong> 휴대용 센서 1호기
+                                                        </p>
+                                                        <p class="rescue-event-item__detail">
+                                                            <strong>내용 :</strong> 부상으로 인해 앓는 소리
+                                                        </p>
+                                                    </div>
+                                                </details>
+
+                                                <details class="rescue-event-item">
+                                                    <summary class="rescue-event-item__header">
+                                                        <div class="rescue-event-item__left">
+                                                            <span class="rescue-event-item__icon">
+                                                                <i class="fas fa-exclamation-circle"></i>
+                                                            </span>
+                                                            <span class="rescue-event-item__title">회의록 추가</span>
+                                                        </div>
+                                                        <div class="rescue-event-item__right">
+                                                            <span class="rescue-event-item__timestamp">2025-10-23 오후 4:17:13</span>
+                                                            <span class="rescue-event-item__toggle-icon rescue-event-item__toggle-plus">+</span>
+                                                            <span class="rescue-event-item__toggle-icon rescue-event-item__toggle-minus">-</span>
+                                                        </div>
+                                                    </summary>
+                                                    <div class="rescue-event-item__content">
+                                                    </div>
+                                                </details>
+
+                                                <details class="rescue-event-item">
+                                                    <summary class="rescue-event-item__header">
+                                                        <div class="rescue-event-item__left">
+                                                            <span class="rescue-event-item__icon">
+                                                                <i class="fas fa-exclamation-circle"></i>
+                                                            </span>
+                                                            <span class="rescue-event-item__title">구조작업 시작</span>
+                                                        </div>
+                                                        <div class="rescue-event-item__right">
+                                                            <span class="rescue-event-item__timestamp">2025-10-23 오후 4:17:13</span>
+                                                            <span class="rescue-event-item__toggle-icon rescue-event-item__toggle-plus">+</span>
+                                                            <span class="rescue-event-item__toggle-icon rescue-event-item__toggle-minus">-</span>
+                                                        </div>
+                                                    </summary>
+                                                    <div class="rescue-event-item__content">
+                                                    </div>
+                                                </details>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--2. 현장 영상-->
+            <div class="center-column">
+                <div class="col-12">
+                    <div class="card card-default card-md rescue-team-wrapper">
+                        <div class="resue-title">
+                            <h6>현장영상</h6>
+                        </div>
+                        <div class="movie-wrapper p-10">
+                            <!-- 영상 컨텐츠 반복 -->
+                            <script>
+                                document.addEventListener('DOMContentLoaded', () => {
+                                    const movieContainer = document.querySelector('.movie-wrapper');
+                                    const movieCardTemplate = `
+                                        <div class="">
+                                            <div class="blog-card blog-card--2">
+                                                <div class="blog-card__thumbnail">
+                                                    <a href="#">
+                                                        <img src="img/blog2.png" alt="">
+                                                    </a>
+                                                </div>
+                                                <div class="blog-card__details pt-1 px-15">
+                                                    <div class="blog-card__content">
+                                                        <div class="blog-card__header-top d-flex justify-content-between">
+                                                            <div class="date">2025년 3월 27일 오후 1:39분</div>
+                                                        </div>
+                                                        <h4 class="pt-1">
+                                                            <a href="#" class="movie-title" rel="bookmark">영상 001</a>
+                                                        </h4>
+                                                    </div>
+                                                    <div class="blog-card__meta">
+                                                        <div class="blog-card__meta-profile">
+                                                            <img src="img/alex-suprun.png" alt="">
+                                                            <span>현장 A</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        `;
+
+                                    let allMovieCardsHTML = '';
+                                    for (let i = 0; i < 6; i++) {
+                                        allMovieCardsHTML += movieCardTemplate;
+                                    }
+                                    movieContainer.innerHTML = allMovieCardsHTML;
+                                });
+                            </script>
+
+                        </div>
+                        <div class="col-12">
+                            <div class="d-flex justify-content-center mt-1 mb-20">
+                                <nav class="dm-page ">
+                                    <ul class="dm-pagination d-flex">
+                                        <li class="dm-pagination__item">
+                                            <a href="#" class="dm-pagination__link pagination-control">
+                                                <span class="la la-angle-left"></span>
+                                            </a>
+                                            <a href="#" class="dm-pagination__link">
+                                                <span class="page-number">1</span>
+                                            </a>
+                                            <a href="#" class="dm-pagination__link active">
+                                                <span class="page-number">2</span>
+                                            </a>
+                                            <a href="#" class="dm-pagination__link">
+                                                <span class="page-number">3</span>
+                                            </a>
+                                            <a href="#" class="dm-pagination__link pagination-control">
+                                                <span class="page-number">...</span>
+                                            </a>
+                                            <a href="#" class="dm-pagination__link">
+                                                <span class="page-number">12</span>
+                                            </a>
+                                            <a href="#" class="dm-pagination__link pagination-control">
+                                                <span class="la la-angle-right"></span>
+                                            </a>
+                                            <a href="#" class="dm-pagination__option">
+                                            </a>
+                                        </li>
+                                        <li class="dm-pagination__item">
+                                            <div class="paging-option">
+                                                <select name="page-number" class="page-selection">
+                                                    <option value="20">
+                                                        20/페이지
+                                                    </option>
+                                                    <option value="40">
+                                                        40/페이지
+                                                    </option>
+                                                    <option value="60">
+                                                        60/페이지
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </nav>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- 3. 채팅-->
+            <div class="right-column">
+                <div class="chat-area d-flex">
+                    <div class="tab-content" id="ueberTabB">
+                        <div class="tab-pane fade show active" id="panel_b_first" role="tabpanel" aria-labelledby="first-tab">
+                            <div class="chat">
+                                <div class="chat-body bg-white radius-xl">
+                                    <div class="chat-header">
+                                        <h6>현장 A</h6>
+                                        <div class="media-body__content d-flex align-items-center m-lg-2">
+                                            <span class="badge-dot dot-success me-1"></span>
+                                            <small class="d-flex color-light fs-12 text-capitalize">
+                                                접속중
+                                            </small>
+                                        </div>
+
+                                        <!-- 추후 필요 옵션 -->
+<!--                                        <ul class="nav flex-nowrap">-->
+<!--                                            <li class="nav-item list-inline-item me-0">-->
+<!--                                                <div class="dropdown">-->
+<!--                                                    <a href="#" role="button" title="Details" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--                                                        <img class="svg" src="img/svg/more-vertical.svg" alt="more-vertical">-->
+<!--                                                    </a>-->
+
+<!--                                                    <div class="dropdown-menu dropdown-menu-right">-->
+<!--                                                        <a class="dropdown-item align-items-center d-flex" href="#" data-chat-info-toggle="">-->
+<!--                                                            <img class="svg" src="img/svg/users.svg" alt="users">-->
+<!--                                                            <span>옵션1</span>-->
+<!--                                                        </a>-->
+
+<!--                                                        <a class="dropdown-item align-items-center d-flex" href="#">-->
+<!--                                                            <img class="svg" src="img/svg/trash-2.svg" alt="">-->
+<!--                                                            <span>옵션2</span>-->
+<!--                                                        </a>-->
+<!--                                                        <a class="dropdown-item align-items-center d-flex" href="#">-->
+<!--                                                            <img class="svg" src="img/svg/x-octagon.svg" alt="x-octagon">-->
+<!--                                                            <span>옵션3</span>-->
+<!--                                                        </a>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </li>-->
+<!--                                        </ul>-->
+
+                                    </div>
+                                    <div class="chat-box chat-box--big p-xl-30 ps-lg-20 pe-lg-0">
+                                        <div class="flex-1 incoming-chat">
+                                            <div class="chat-text-box ">
+                                                <div class="media d-flex">
+                                                    <div class="chat-text-box__photo ">
+                                                        <img src="img/author/1.jpg" class="align-self-start me-15 wh-46" alt="img">
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <div class="chat-text-box__content">
+                                                            <div class="chat-text-box__title d-flex align-items-center">
+                                                                <h6 class="fs-14">
+                                                                    현장B
+                                                                </h6>
+                                                                <span class="chat-text-box__time fs-12 color-light fw-400 ms-15">
+                                                                    오전 8:30
+                                                                </span>
+                                                            </div>
+                                                            <div class="d-flex align-items-center mb-20 mt-10">
+                                                                <div class="chat-text-box__subtitle p-20 bg-primary">
+                                                                    <p class="color-white">
+                                                                        안녕하세요 채팅 테스트입니다.
+                                                                    </p>
+                                                                </div>
+<!--                                                                <div class="chat-text-box__other d-flex m-lg-2">-->
+<!--                                                                    <div class="dropdown dropdown-click">-->
+<!--                                                                        <button class="btn-link border-0 bg-transparent p-0" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--                                                                            <img src="img/svg/more-horizontal.svg" alt="more-horizontal" class="svg">-->
+<!--                                                                        </button>-->
+<!--                                                                        <div class="dropdown-default dropdown-bottomLeft dropdown-menu-left dropdown-menu" style="">-->
+<!--                                                                            <a class="dropdown-item" href="#">-->
+<!--                                                                                복사-->
+<!--                                                                            </a>-->
+<!--                                                                            <a class="dropdown-item" href="#">-->
+<!--                                                                                신고-->
+<!--                                                                            </a>-->
+<!--                                                                        </div>-->
+<!--                                                                    </div>-->
+<!--                                                                </div>-->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <p class="social-connector text-center text-capitalize">
+                                            <span>오늘</span>
+                                        </p>
+
+                                        <div class="flex-1 justify-content-end d-flex outgoing-chat mt-20">
+                                            <div class="chat-text-box">
+                                                <div class="media ">
+                                                    <div class="media-body">
+                                                        <div class="chat-text-box__content">
+                                                            <div class="chat-text-box__title d-flex align-items-center justify-content-end mb-2">
+                                                                <span class="chat-text-box__time fs-12 color-light fw-400">
+                                                                    오후 8:30
+                                                                </span>
+                                                            </div>
+                                                            <div class="d-flex align-items-center justify-content-end">
+                                                                <div class="chat-text-box__subtitle p-20 bg-deep">
+                                                                    <p class="color-gray">
+                                                                        채팅 테스트 보낸 채팅 테스트 채팅 테스트 보낸 채팅 테스트
+                                                                    </p>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="flex-1 justify-content-end d-flex outgoing-chat">
+                                            <div class="chat-text-box">
+                                                <div class="media ">
+                                                    <div class="media-body">
+                                                        <div class="chat-text-box__content">
+                                                            <div class="d-flex align-items-center justify-content-end">
+                                                                <div class="chat-text-box__subtitle p-20 bg-deep">
+                                                                    <p class="color-gray">
+                                                                        채팅 테스트 보낸 채팅 테스트
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="flex-1 incoming-chat mt-30">
+                                            <div class="chat-text-box">
+                                                <div class="media d-flex">
+                                                    <div class="chat-text-box__photo ">
+                                                        <img src="img/author/1.jpg" class="align-self-start me-15 wh-46" alt="img">
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <div class="chat-text-box__content">
+                                                            <div class="chat-text-box__title d-flex align-items-center">
+                                                                <h6 class="fs-14">현장B</h6>
+                                                                <span class="chat-text-box__time fs-12 color-light fw-400 ms-15">
+                                                                    오후 8:32
+                                                                </span>
+                                                            </div>
+                                                            <div class="d-flex align-items-center mb-20 mt-10">
+                                                                <div class="chat-text-box__subtitle p-20 bg-primary">
+                                                                    <p class="color-white">
+                                                                        채팅 테스트 답변 채팅 테스트 답변 채팅 테스트 답변 채팅 테스트 답변
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="flex-1 justify-content-end d-flex outgoing-chat">
+                                            <div class="chat-text-box">
+                                                <div class="media ">
+                                                    <div class="media-body">
+                                                        <div class="chat-text-box__content">
+                                                            <div class="chat-text-box__title d-flex align-items-center justify-content-end mb-2">
+                                                                <span class="chat-text-box__time fs-12 color-light fw-400">
+                                                                    8:30PM
+                                                                </span>
+                                                            </div>
+                                                            <div class="d-flex align-items-center justify-content-end">
+                                                                <div class="chat-text-box__subtitle p-20 bg-deep">
+                                                                    <p class="color-gray">
+                                                                        채팅테스트 채팅테스트
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="flex-1 incoming-chat mt-30">
+                                            <div class="chat-text-box">
+                                                <div class="media d-flex">
+                                                    <div class="chat-text-box__photo ">
+                                                        <img src="img/author/1.jpg" class="align-self-start me-15 wh-46" alt="img">
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <div class="chat-text-box__content">
+                                                            <div class="d-flex align-items-center ">
+                                                                <div class="chat-text-box__subtitle typing cbg-light pe-30">
+                                                                    <p class="color-light text-capitalize">입력중...</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- End: Incomming -->
+                                    </div>
+                                    <div class="chat-footer px-xl-30 px-lg-20 pb-lg-30 pt-1">
+                                        <div class="chat-type-text">
+                                            <div class="pt-0 outline-0 pb-0 pe-0 ps-0 rounded-0 position-relative d-flex align-items-center" tabindex="-1">
+                                                <div class="d-flex justify-content-between align-items-center w-100 flex-wrap">
+                                                    <div class=" flex-1 d-flex align-items-center chat-type-text__write ms-0">
+                                                        <a href="#">
+                                                            <img class="svg" src="img/svg/smile.svg" alt="smile">
+                                                        </a>
+                                                        <input class="form-control border-0 bg-transparent box-shadow-none" placeholder="메세지를 입력하세요">
+
+                                                    </div>
+                                                    <div class="chat-type-text__btn">
+                                                        <button type="button" class="border-0 btn-deep color-light wh-50 p-10 rounded-circle">
+                                                            <img class="svg" src="img/svg/image.svg" alt="image">
+                                                        </button>
+                                                        <button type="button" class="border-0 btn-deep color-light wh-50 p-10 rounded-circle">
+                                                            <img class="svg" src="img/svg/paperclip.svg" alt="paperclip">
+                                                        </button>
+                                                        <button type="button" class="border-0 btn-primary wh-50 p-10 rounded-circle">
+                                                            <img class="svg" src="img/svg/send.svg" alt="send">
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    @@include('./include/_footer.html')
+</main>
+<div id="overlayer">
+    <div class="loader-overlay">
+        <div class="dm-spin-dots spin-lg">
+            <span class="spin-dot badge-dot dot-primary"></span>
+            <span class="spin-dot badge-dot dot-primary"></span>
+            <span class="spin-dot badge-dot dot-primary"></span>
+            <span class="spin-dot badge-dot dot-primary"></span>
+        </div>
+    </div>
+</div>
+<div class="overlay-dark-sidebar"></div>
+<div class="customizer-overlay"></div>
+@@include('./include/_scripts.html')
+</body>
+
+</html>

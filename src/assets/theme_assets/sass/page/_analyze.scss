@@ -1,0 +1,219 @@
+
+.analyze-sensor-activity-icons {
+  display: flex;
+  gap: 3px;
+  margin-left: 5px;
+}
+
+.analyze-sensor-wrapper {
+  display: flex;
+  padding: 10px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.analyze-activity-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: #f2f2f7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.analyze-time-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.analyze-sensor-name {
+  color: black;
+  font-size: 13px;
+  margin-bottom: 0px;
+}
+
+.analyze-sensor-time, .analyze-sensor-section {
+  color: black;
+  font-size: 13px;
+  margin-bottom: 0px;
+}
+
+.analyze-data-list {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.analyze-data-list:hover {
+  background-color: #eceeff;
+}
+
+.analyze-data-list img{
+  width: 8%;
+}
+
+#analyze-sensor-group-01, #analyze-sensor-group-02,
+#analyze-sensor-group-03, #analyze-sensor-group-04 {
+  background: white;
+  border: 1px solid #d2d2d2;
+  border-radius: 10px !important;
+}
+
+.analyze-sensor-time-range {
+  font-size: 15px;
+  padding-left: 10px;
+  color: black;
+}
+.calendar-popup{
+  margin-right: 10px;
+}
+
+.calendar-popup, .filtering-popup {
+  color: black;
+  font-size: 18px !important;
+  cursor: pointer;
+}
+
+.calender-wrapper {
+  width: 420px;
+  position: fixed;
+  inset: 0px auto auto 0px;
+  margin: 0px;
+  padding: 20px;
+  transform: translate(1118px, 124px);
+}
+
+.filtering-wrapper {
+  width: 320px;
+  font-size: 0.9rem;
+}
+
+.filtering-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.filtering-sub-title {
+  font-size: 0.9rem;
+  margin-bottom: 0;
+}
+
+.filtering-reset-btn {
+  border: none;
+  border-radius: 5px;
+}
+
+.filtering-header {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.75rem;
+}
+
+.filtering-header h5 {
+  margin-bottom: 0;
+  font-weight: 600;
+}
+
+.filtering-reset-btn {
+  font-size: 0.75rem;
+}
+
+.filtering-time-wrapper {
+  gap: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.filtering-time-input {
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  padding: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.filtering-time-value {
+  width: 2em;
+  border: none;
+  background-color: transparent;
+  text-align: center;
+  outline: none;
+  -moz-appearance: textfield;
+}
+
+/* Webkit 계열 (Chrome, Safari) 스피너 제거 */
+.filtering-time-value::-webkit-outer-spin-button,
+.filtering-time-value::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.filtering-sensor-btn {
+  width: 100%;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  background: white;
+  height: 80px !important;
+  padding: 3px !important;
+}
+
+.filtering-sensor-icon {
+  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
+  justify-items: center;
+}
+
+.filtering-sensor-btn.active {
+  font-weight: 600;
+  border: 2px solid #0d6efd;
+}
+
+.filtering-signal-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.filtering-signal-icon {
+  width: 50px !important;
+}
+
+.filtering-signal-icon-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.filtering-signal-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: none;
+  background-color: #6c757d;
+  color: white;
+  font-size: 1.25rem;
+  display: grid;
+  place-items: center;
+  transition: all 0.2s ease;
+}
+
+/* 신호 필터링 활성화 상태 */
+.filtering-signal-btn.active {
+  background-color: #0d6efd;
+}
+
+.filtering-signal-btn:hover {
+  opacity: 0.8;
+}

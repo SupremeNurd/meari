@@ -1,0 +1,59 @@
+@@include('./include/_head.html')
+
+<body class="layout-light side-menu">
+
+@@include('./include/_header_menu.html')
+
+   <main class="main-content">
+
+       @@include('./include/_sidebar_menu.html')
+
+      <div class="contents">
+
+         <div class="container-fluid">
+            <div class="social-dash-wrap">
+               <div class="row">
+                  <div class="col-lg-12">
+
+                     <div class="breadcrumb-main">
+                        <h4 class="text-capitalize breadcrumb-title">Import</h4>
+                        <div class="breadcrumb-action justify-content-center flex-wrap">
+                           <nav aria-label="breadcrumb">
+                              <ol class="breadcrumb">
+                                 <li class="breadcrumb-item"><a href="#"><i class="uil uil-estate"></i>Home</a></li>
+                                 <li class="breadcrumb-item active" aria-current="page">Import</li>
+                              </ol>
+                           </nav>
+                        </div>
+                     </div>
+
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-lg-12">
+                     <div class="">
+                        <div class="dm-upload">
+                           <div class="dm-upload-avatar media-import">
+                              <img class="svg" src="img/svg/upload.svg" alt="upload">
+                              <p class="color-dark fs-20">Drop File or <a href="#">Browse</a></p>
+                           </div>
+                           <div class="avatar-up">
+                              <input type="file" name="upload-avatar-input" class="upload-avatar-input">
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+      </div>
+
+       @@include('./include/_footer.html')
+
+   </main>
+
+@@include('./include/_scripts.html')
+</body>
+
+</html>
