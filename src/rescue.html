@@ -1,7 +1,7 @@
 
 @@include('./include/_head.html')
 
-<body class="layout-light side-menu">
+<body class="layout-light side-menu" >
 
 @@include('./include/_header_menu.html')
 
@@ -9,7 +9,7 @@
 
     @@include('./include/_sidebar_menu.html')
 
-    <div class="rescue-wrapper">
+    <div class="rescue-wrapper" id="app-content">
         <div class="d-flex">
 
             <!-- 1. 구조대현황-->
@@ -228,44 +228,41 @@
                             <h6>현장영상</h6>
                         </div>
                         <div class="movie-wrapper p-10">
-                            <!-- 영상 컨텐츠 반복 -->
                             <script>
-                                document.addEventListener('DOMContentLoaded', () => {
-                                    const movieContainer = document.querySelector('.movie-wrapper');
-                                    const movieCardTemplate = `
-                                        <div class="">
-                                            <div class="blog-card blog-card--2">
-                                                <div class="blog-card__thumbnail">
-                                                    <a href="#">
-                                                        <img src="img/blog2.png" alt="">
-                                                    </a>
+                                const movieContainer = document.querySelector('.movie-wrapper');
+                                const movieCardTemplate = `
+                                <div class="">
+                                    <div class="blog-card blog-card--2">
+                                        <div class="blog-card__thumbnail">
+                                            <a href="#">
+                                                <img src="img/blog2.png" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="blog-card__details pt-1 px-15">
+                                            <div class="blog-card__content">
+                                                <div class="blog-card__header-top d-flex justify-content-between">
+                                                    <div class="date">2025년 3월 27일 오후 1:39분</div>
                                                 </div>
-                                                <div class="blog-card__details pt-1 px-15">
-                                                    <div class="blog-card__content">
-                                                        <div class="blog-card__header-top d-flex justify-content-between">
-                                                            <div class="date">2025년 3월 27일 오후 1:39분</div>
-                                                        </div>
-                                                        <h4 class="pt-1">
-                                                            <a href="#" class="movie-title" rel="bookmark">영상 001</a>
-                                                        </h4>
-                                                    </div>
-                                                    <div class="blog-card__meta">
-                                                        <div class="blog-card__meta-profile">
-                                                            <img src="img/alex-suprun.png" alt="">
-                                                            <span>현장 A</span>
-                                                        </div>
-                                                    </div>
+                                                <h4 class="pt-1">
+                                                    <a href="#" class="movie-title" rel="bookmark">영상 001</a>
+                                                </h4>
+                                            </div>
+                                            <div class="blog-card__meta">
+                                                <div class="blog-card__meta-profile">
+                                                    <img src="img/alex-suprun.png" alt="">
+                                                    <span>현장 A</span>
                                                 </div>
                                             </div>
                                         </div>
-                                        `;
+                                    </div>
+                                </div>
+                                `;
 
-                                    let allMovieCardsHTML = '';
-                                    for (let i = 0; i < 6; i++) {
-                                        allMovieCardsHTML += movieCardTemplate;
-                                    }
-                                    movieContainer.innerHTML = allMovieCardsHTML;
-                                });
+                                let allMovieCardsHTML = '';
+                                for (let i = 0; i < 6; i++) {
+                                    allMovieCardsHTML += movieCardTemplate;
+                                }
+                                movieContainer.innerHTML = allMovieCardsHTML;
                             </script>
 
                         </div>
@@ -562,20 +559,26 @@
         </div>
 
     </div>
-    @@include('./include/_footer.html')
-</main>
-<div id="overlayer">
-    <div class="loader-overlay">
-        <div class="dm-spin-dots spin-lg">
-            <span class="spin-dot badge-dot dot-primary"></span>
-            <span class="spin-dot badge-dot dot-primary"></span>
-            <span class="spin-dot badge-dot dot-primary"></span>
-            <span class="spin-dot badge-dot dot-primary"></span>
+
+    <div class="rescue-modal-overlay" id="rescue-videoModal">
+        <div class="rescue-modal-content">
+            <div class="rescue-modal-header">
+                <h5 class="rescue-modal-title">영상 제목이 여기에 표시됩니다</h5>
+                <button type="button" class="rescue-close-button">&times;</button>
+            </div>
+            <div class="rescue-modal-body">
+                <video width="100%" controls>
+                    <source src="movie.mp4" type="video/mp4">
+                    브라우저가 비디오 태그를 지원하지 않습니다.
+                </video>
+                <p class="mt-20">영상에 대한 추가 설명이나 정보가 여기에 들어갑니다.</p>
+            </div>
         </div>
     </div>
-</div>
-<div class="overlay-dark-sidebar"></div>
-<div class="customizer-overlay"></div>
+
+    @@include('./include/_footer.html')
+</main>
+
 @@include('./include/_scripts.html')
 </body>
 

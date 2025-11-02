@@ -10,7 +10,7 @@
 
     @@include('./include/_sidebar_menu.html')
 
-    <div class="setting-container">
+    <div class="setting-container" id="app-content">
         <section class="setting-section-list">
             <div class="card card-default card-md mb-4">
                 <div class="card-body">
@@ -455,159 +455,156 @@
                 </div>
             </div>
         </section>
+
+        <script>
+            (function() {
+                function initSettingPage() {
+
+                    const editBroadcastModal = document.getElementById('editBroadcastModal');
+                    const pairingButtons = document.querySelectorAll('.pairing-btn');
+
+                    if (!pairingButtons || pairingButtons.length === 0) {
+                        return; // setting.html이 아니면 중단
+                    }
+
+                    if (editBroadcastModal) {
+                        editBroadcastModal.addEventListener('show.bs.modal', function (event) {
+                            const triggerButton = event.relatedTarget;
+                            const item = triggerButton.closest('.broadcast-manage-item');
+                            if (item) {
+
+                            }
+                        });
+                    }
+                }
+
+                /**
+                 * [SPA + 새로고침 호환 래퍼 (최종 수정)]
+                 */
+                function checkLibrariesAndRun() {
+                    if (typeof bootstrap !== 'undefined') {
+                        // 라이브러리 로드 완료 (SPA 이동 시)
+                        // 라우터가 150ms를 기다리므로, 여기서는 즉시 실행
+                        initSettingPage();
+                    } else {
+                        // 2. 아직 로드 안됨 (새로고침 중...)
+                        setTimeout(checkLibrariesAndRun, 50);
+                    }
+                }
+                checkLibrariesAndRun();
+            })();
+        </script>
+
+        <!-- 페어링 모달-->
+        <div class="modal fade" id="pairingModal" tabindex="-1" aria-labelledby="pairingModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content pairing-modal-content">
+
+                    <div class="pairing-modal-header">
+                        <i class="fas fa-link pairing-header-icon"></i>
+                        <h5 class="pairing-header-title" id="pairingModalLabel">
+                            페어링
+                        </h5>
+                        <p class="pairing-header-subtitle">
+                            페어링을 연결할 기기를 선택해주세요.
+                        </p>
+                    </div>
+
+                    <div class="modal-body pairing-modal-body">
+                        <div class="pairing-diagram-container">
+
+                            <div class="pairing-node">
+                                <div class="pairing-icon-wrapper">
+                                    <i class="fas fa-broadcast-tower"></i>
+                                </div>
+                                <span class="pairing-node-label">센서</span>
+                            </div>
+
+                            <div class="pairing-dotted-line"></div>
+
+                            <div class="pairing-node">
+                                <div class="pairing-icon-wrapper">
+                                    <i class="fas fa-hdd"></i>
+                                </div>
+                                <span class="pairing-node-label">통신단말기</span>
+                                <button type="button" class="pairing-btn">
+                                    연결
+                                </button>
+                            </div>
+
+                            <div class="pairing-dotted-line"></div>
+
+                            <div class="pairing-node">
+                                <div class="pairing-icon-wrapper">
+                                    <i class="fas fa-server"></i>
+                                </div>
+                                <span class="pairing-node-label">서버</span>
+                                <button type="button" class="pairing-btn">
+                                    연결됨
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="modal-footer pairing-modal-footer">
+                        <button type="button" class="btn-pairing-cancel" data-bs-dismiss="modal">
+                            취소
+                        </button>
+                        <button type="button" class="btn-pairing-save">
+                            저장
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 방송데이터 관리 모달-->
+        <div class="modal fade" id="editBroadcastModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content edit-modal-content">
+
+                    <div class="edit-modal-header">
+                        <i class="fas fa-bullhorn edit-header-icon"></i>
+                        <h5 class="edit-header-title" id="editModalLabel">
+                            방송데이터 수정
+                        </h5>
+                        <p class="edit-header-subtitle">
+                            방송 데이터의 삭제 또는 고정하여 삭제방지를 설정하세요.
+                        </p>
+                    </div>
+
+                    <div class="modal-body edit-modal-body">
+                        <div id="edit-modal-time" class="edit-modal-line"></div>
+                        <div id="edit-modal-duration" class="edit-modal-line"></div>
+                        <div id="edit-modal-message" class="edit-modal-line"></div>
+                    </div>
+
+                    <div class="modal-footer edit-modal-footer">
+                        <button type="button" class="btn-edit-cancel" data-bs-dismiss="modal">
+                            취소
+                        </button>
+                        <button type="button" class="btn-edit-pin">
+                            <i class="fas fa-thumbtack"></i>
+                            고정
+                        </button>
+                        <button type="button" class="btn-edit-delete">
+                            삭제
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     @@include('./include/_footer.html')
 
-    <div id="overlayer">
-        <div class="loader-overlay">
-            <div class="dm-spin-dots spin-lg">
-                <span class="spin-dot badge-dot dot-primary"></span>
-                <span class="spin-dot badge-dot dot-primary"></span>
-                <span class="spin-dot badge-dot dot-primary"></span>
-                <span class="spin-dot badge-dot dot-primary"></span>
-            </div>
-        </div>
-    </div>
-    <div class="overlay-dark-sidebar"></div>
-    <div class="customizer-overlay"></div>
 
-    <!-- 페어링 모달-->
-    <div class="modal fade" id="pairingModal" tabindex="-1" aria-labelledby="pairingModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content pairing-modal-content">
-
-                <div class="pairing-modal-header">
-                    <i class="fas fa-link pairing-header-icon"></i>
-                    <h5 class="pairing-header-title" id="pairingModalLabel">
-                        페어링
-                    </h5>
-                    <p class="pairing-header-subtitle">
-                        페어링을 연결할 기기를 선택해주세요.
-                    </p>
-                </div>
-
-                <div class="modal-body pairing-modal-body">
-                    <div class="pairing-diagram-container">
-
-                        <div class="pairing-node">
-                            <div class="pairing-icon-wrapper">
-                                <i class="fas fa-broadcast-tower"></i>
-                            </div>
-                            <span class="pairing-node-label">센서</span>
-                        </div>
-
-                        <div class="pairing-dotted-line"></div>
-
-                        <div class="pairing-node">
-                            <div class="pairing-icon-wrapper">
-                                <i class="fas fa-hdd"></i>
-                            </div>
-                            <span class="pairing-node-label">통신단말기</span>
-                            <button type="button" class="pairing-btn">
-                                연결
-                            </button>
-                        </div>
-
-                        <div class="pairing-dotted-line"></div>
-
-                        <div class="pairing-node">
-                            <div class="pairing-icon-wrapper">
-                                <i class="fas fa-server"></i>
-                            </div>
-                            <span class="pairing-node-label">서버</span>
-                            <button type="button" class="pairing-btn">
-                                연결됨
-                            </button>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="modal-footer pairing-modal-footer">
-                    <button type="button" class="btn-pairing-cancel" data-bs-dismiss="modal">
-                        취소
-                    </button>
-                    <button type="button" class="btn-pairing-save">
-                        저장
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 방송데이터 관리 모달-->
-    <div class="modal fade" id="editBroadcastModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content edit-modal-content">
-
-                <div class="edit-modal-header">
-                    <i class="fas fa-bullhorn edit-header-icon"></i>
-                    <h5 class="edit-header-title" id="editModalLabel">
-                        방송데이터 수정
-                    </h5>
-                    <p class="edit-header-subtitle">
-                        방송 데이터의 삭제 또는 고정하여 삭제방지를 설정하세요.
-                    </p>
-                </div>
-
-                <div class="modal-body edit-modal-body">
-                    <div id="edit-modal-time" class="edit-modal-line"></div>
-                    <div id="edit-modal-duration" class="edit-modal-line"></div>
-                    <div id="edit-modal-message" class="edit-modal-line"></div>
-                </div>
-
-                <div class="modal-footer edit-modal-footer">
-                    <button type="button" class="btn-edit-cancel" data-bs-dismiss="modal">
-                        취소
-                    </button>
-                    <button type="button" class="btn-edit-pin">
-                        <i class="fas fa-thumbtack"></i>
-                        고정
-                    </button>
-                    <button type="button" class="btn-edit-delete">
-                        삭제
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
 
 </main>
 
 @@include('./include/_scripts.html')
 
-<script src="assets/theme_assets/js/map.js"></script>
-<script>
-    const editBroadcastModal = document.getElementById('editBroadcastModal');
-
-    if (editBroadcastModal) {
-        // 모달이 열리기 '직전'에 발생하는 이벤트
-        editBroadcastModal.addEventListener('show.bs.modal', function (event) {
-
-            // 클릭된 '수정' 버튼(event.relatedTarget)을 찾기
-            const triggerButton = event.relatedTarget;
-
-            // 버튼의 가장 가까운 부모인 '.broadcast-manage-item'을 찾기
-            const item = triggerButton.closest('.broadcast-manage-item');
-
-            if (item) {
-                // 부모 아이템 내부에서 데이터 소스를 찾고 innerHTML을 사용해 아이콘까지 그대로 복사
-                const timeData = item.querySelector('.broadcast-manage-col-time').textContent.trim();
-                const durationData = item.querySelector('.broadcast-manage-col-duration').innerHTML.trim();
-                const messageData = item.querySelector('.broadcast-manage-col-message').innerHTML.trim();
-                const modalTime = editBroadcastModal.querySelector('#edit-modal-time');
-                const modalDuration = editBroadcastModal.querySelector('#edit-modal-duration');
-                const modalMessage = editBroadcastModal.querySelector('#edit-modal-message');
-
-                // 모달에 데이터를 삽입
-                modalTime.textContent = timeData; // 시간은 텍스트만
-                modalDuration.innerHTML = durationData; // 아이콘 포함
-                modalMessage.innerHTML = messageData; // 아이콘 포함
-            }
-        });
-    }
-</script>
 </body>
 
 </html>

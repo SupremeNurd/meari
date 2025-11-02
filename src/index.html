@@ -8,7 +8,7 @@
 
     @@include('./include/_sidebar_menu.html')
 
-    <div class="dashboard-container">
+    <div class="dashboard-container" id="app-content">
 
         <section class="dashboard-section section-map">
             <img src="img/meari-map.jpg" alt="메아리 지도">
@@ -319,57 +319,46 @@
                 <button id="popup-close-btn" aria-label="닫기">&times;</button>
             </div>
         </div>
+        <script>
+            (function() {
+                const sensorCards = document.querySelectorAll('.sensor-card');
 
+
+               // [안전 장치]
+               // sensor-card가 없으면 이 스크립트는 1번 페이지의 스크립트가 아니므로 즉시 중단하여 "꼬임"을 방지
+                if (!sensorCards || sensorCards.length === 0) {
+                    return;
+                }
+
+                const popupBox = document.getElementById('sensor-detail-popup');
+                const closeButton = document.getElementById('popup-close-btn');
+                const popupSensorName = document.getElementById('popup-sensor-name');
+
+                sensorCards.forEach(function(card) {
+                    card.addEventListener('click', function() {
+                        const sensorName = this.querySelector('.sensor-name').textContent;
+                        popupSensorName.textContent = sensorName;
+                        popupBox.classList.add('show');
+                    });
+                });
+
+                // 팝업 닫기 버튼 (영구 요소 - 플래그)
+                if (closeButton && !closeButton.dataset.listenerAttached) {
+                    closeButton.addEventListener('click', function() {
+                        popupBox.classList.remove('show');
+                    });
+                    closeButton.dataset.listenerAttached = 'true';
+                }
+            })();
+        </script>
     </div>
 
     @@include('./include/_footer.html')
 
-    <div id="overlayer">
-        <div class="loader-overlay">
-            <div class="dm-spin-dots spin-lg">
-                <span class="spin-dot badge-dot dot-primary"></span>
-                <span class="spin-dot badge-dot dot-primary"></span>
-                <span class="spin-dot badge-dot dot-primary"></span>
-                <span class="spin-dot badge-dot dot-primary"></span>
-            </div>
-        </div>
-    </div>
-    <div class="overlay-dark-sidebar"></div>
-    <div class="customizer-overlay"></div>
 </main>
 
 @@include('./include/_scripts.html')
 
-<script src="assets/theme_assets/js/map.js"></script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-
-        const sensorCards = document.querySelectorAll('.sensor-card'); // 모든 센서 카드
-        const popupBox = document.getElementById('sensor-detail-popup'); // 하단 팝업 박스
-        const closeButton = document.getElementById('popup-close-btn'); // 팝업 닫기 버튼
-        const popupSensorName = document.getElementById('popup-sensor-name'); // 팝업의 센서 이름 영역
-
-        sensorCards.forEach(function(card) {
-            card.addEventListener('click', function() {
-
-                // 클릭된 카드의 센서 이름을 가져오기
-                const sensorName = card.querySelector('.sensor-name').textContent;
-
-                // 팝업 박스의 제목을 클릭된 센서 이름으로 변경
-                popupSensorName.textContent = sensorName;
-
-                // 팝업 박스에 'show' 클래스를 추가하여 화면에 표시
-                popupBox.classList.add('show');
-            });
-        });
-
-        closeButton.addEventListener('click', function() {
-            popupBox.classList.remove('show');
-        });
-
-    });
-</script>
 </body>
 
 </html>

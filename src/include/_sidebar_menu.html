@@ -36,13 +36,6 @@
                         <span class="sidebar-title">설정</span>
                     </a>
                 </li>
-<!--                <li>-->
-<!--                    <a href="changelog.html" class="">-->
-<!--                        <span class="nav-icon uil uil-arrow-growth"></span>-->
-<!--                        <span class="menu-text">Changelog</span>-->
-<!--                        <span class="badge badge-info-10 menuItem rounded-pill">1.1.6</span>-->
-<!--                    </a>-->
-<!--                </li>-->
             </ul>
         </div>
     </div>
@@ -50,38 +43,292 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        // 현재 페이지 주소를 가져옴
+        // ===== 초기 로딩 시 현재 페이지 활성화 처리 =====
         const currentPath = window.location.pathname;
         const currentPage = currentPath.split('/').pop() || 'index.html';
-
-        // 헤더 파일에 있는 타이틀 요소를 찾기
         const headerTitleElement = document.querySelector('.header-main-title');
-
-        // 사이드바 파일에 있는 모든 링크를 찾기
         const sidebarLinks = document.querySelectorAll('.sidebar_nav .sidebar-link');
 
-        // 링크들을 확인하며 현재 페이지와 일치하는 링크를 찾기
+        // 사이드바 링크들을 순회하며 현재 페이지와 일치하는 링크 찾기
         sidebarLinks.forEach(link => {
             const linkPage = link.getAttribute('href').split('/').pop();
-
             if (currentPage === linkPage) {
-                // 일치하는 링크에 'active' 클래스 부여
+                // 일치하는 링크에 active 클래스 추가
                 link.classList.add('active');
 
-                // 일치하는 링크 안의 '.sidebar-title' 텍스트를 가져옴
+                // 헤더 타이틀을 현재 페이지 메뉴명으로 변경
                 const activeMenuTitle = link.querySelector('.sidebar-title')?.textContent;
-
-                // 헤더 타이틀의 텍스트를 6번에서 찾은 사이드바 메뉴명으로 변경
                 if (headerTitleElement && activeMenuTitle) {
                     headerTitleElement.textContent = activeMenuTitle;
                 }
 
-                // 부모 메뉴 열기 등 나머지 코드는 생략
+                // 부모 메뉴가 있으면 열기
                 const parentLi = link.closest('li.has-child');
                 if (parentLi) {
                     parentLi.classList.add('open');
                 }
             }
         });
+
+        // ===== SPA 네비게이션 로직 =====
+        (function () {
+            // 상수 정의
+            const CONTENT_SELECTOR = '#app-content';
+            const LINK_SELECTOR = '.sidebar_nav .sidebar-link';
+            const headerTitleElement = document.querySelector('.header-main-title');
+
+            // URL 기반으로 사이드바 active 상태 설정
+            function setActiveByUrl(url) {
+                const urlPath = new URL(url, location.origin).pathname.split('/').pop() || 'index.html';
+                document.querySelectorAll(LINK_SELECTOR).forEach(a => {
+                    const page = a.getAttribute('href').split('/').pop();
+                    a.classList.toggle('active', page === urlPath);
+                });
+            }
+
+            // 현재 active 링크의 타이틀로 헤더 업데이트
+            function setHeaderTitleByActive() {
+                const active = document.querySelector(LINK_SELECTOR + '.active');
+                const title = active?.querySelector('.sidebar-title')?.textContent?.trim();
+                if (headerTitleElement && title) headerTitleElement.textContent = title;
+            }
+
+            // 새로운 페이지의 HTML을 가져와서 메인 콘텐츠 추출
+            async function fetchMain(url) {
+                const res = await fetch(url, { credentials: 'same-origin' });
+                if (!res.ok) throw new Error('페이지 로드 실패: ' + url);
+                const html = await res.text();
+
+                // HTML 문자열을 DOM으로 파싱
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+
+                // 새 페이지에서 메인 콘텐츠 영역 추출
+                const newMain = doc.querySelector(CONTENT_SELECTOR);
+                if (!newMain) throw new Error(`선택자 ${CONTENT_SELECTOR}를 ${url}에서 찾을 수 없음`);
+
+                // 브라우저 탭 타이틀 업데이트
+                const newTitle = doc.querySelector('title')?.textContent;
+                if (newTitle) document.title = newTitle;
+
+                return newMain;
+            }
+
+            // Bootstrap 컴포넌트 완전 파괴 (페이지 전환 시 중요)
+            function destroyBootstrapComponents(container) {
+                try {
+                    // 1. 모달(Modal) 제거
+                    const modals = container.querySelectorAll('.modal');
+                    modals.forEach(modal => {
+                        const instance = bootstrap.Modal.getInstance(modal);
+                        if (instance) {
+                            try {
+                                instance.hide();
+                                setTimeout(() => {
+                                    if (instance) instance.dispose();
+                                }, 50);
+                            } catch (e) {
+                                console.warn('모달 제거 오류:', e);
+                            }
+                        }
+                    });
+
+                    // 2. 모달 백드롭(어두운 배경) 제거
+                    document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
+                        backdrop.remove();
+                    });
+
+                    // 3. 드롭다운(Dropdown) 제거
+                    const dropdowns = container.querySelectorAll('[data-bs-toggle="dropdown"]');
+                    dropdowns.forEach(dropdown => {
+                        const instance = bootstrap.Dropdown.getInstance(dropdown);
+                        if (instance) {
+                            try {
+                                instance.dispose();
+                            } catch (e) {
+                                console.warn('드롭다운 제거 오류:', e);
+                            }
+                        }
+                    });
+
+                    // 4. 콜랩스(Collapse) 제거
+                    const collapses = container.querySelectorAll('.collapse');
+                    collapses.forEach(collapse => {
+                        const instance = bootstrap.Collapse.getInstance(collapse);
+                        if (instance) {
+                            try {
+                                instance.dispose();
+                            } catch (e) {
+                                console.warn('콜랩스 제거 오류:', e);
+                            }
+                        }
+                    });
+
+                    // 5. 툴팁(Tooltip) 제거
+                    const tooltips = container.querySelectorAll('[data-bs-toggle="tooltip"]');
+                    tooltips.forEach(tooltip => {
+                        const instance = bootstrap.Tooltip.getInstance(tooltip);
+                        if (instance) {
+                            try {
+                                instance.dispose();
+                            } catch (e) {
+                                console.warn('툴팁 제거 오류:', e);
+                            }
+                        }
+                    });
+
+                    // 6. 팝오버(Popover) 제거
+                    const popovers = container.querySelectorAll('[data-bs-toggle="popover"]');
+                    popovers.forEach(popover => {
+                        const instance = bootstrap.Popover.getInstance(popover);
+                        if (instance) {
+                            try {
+                                instance.dispose();
+                            } catch (e) {
+                                console.warn('팝오버 제거 오류:', e);
+                            }
+                        }
+                    });
+
+                    // 7. body 태그의 모달 관련 클래스 및 스타일 제거
+                    document.body.classList.remove('modal-open');
+                    document.body.style.overflow = '';
+                    document.body.style.paddingRight = '';
+                    document.body.removeAttribute('data-bs-overflow');
+                    document.body.removeAttribute('data-bs-padding-right');
+                } catch (error) {
+                    console.error('Bootstrap 컴포넌트 제거 중 오류 발생:', error);
+                }
+            }
+
+            // 이전 페이지 정리 (페이지 전환 전 실행)
+            function cleanupPreviousPage(container) {
+                // Bootstrap 컴포넌트 파괴
+                destroyBootstrapComponents(container);
+
+                // 각 페이지별 cleanup 이벤트 발생 (페이지별 스크립트에서 수신 가능)
+                const cleanupEvent = new CustomEvent('page:cleanup');
+                container.dispatchEvent(cleanupEvent);
+
+                // 기존 스크립트 태그 제거 (이벤트 리스너 정리 목적)
+                const oldScripts = container.querySelectorAll('script');
+                oldScripts.forEach(script => script.remove());
+            }
+
+            // 새 페이지의 스크립트 재실행
+            function reexecuteScripts(scopeEl) {
+                const scripts = [...scopeEl.querySelectorAll('script')];
+                scripts.forEach(old => {
+                    try {
+                        // 새 script 태그 생성
+                        const s = document.createElement('script');
+
+                        // 외부 스크립트 속성 복사
+                        if (old.src) {
+                            s.src = old.src;
+                        }
+                        if (old.type) s.type = old.type;
+                        if (old.noModule) s.noModule = true;
+                        if (old.defer) s.defer = true;
+                        if (old.async) s.async = true;
+
+                        // 인라인 스크립트 처리 (변수 충돌 방지를 위해 IIFE로 감싸기)
+                        if (old.textContent && !old.src) {
+                            const content = old.textContent.trim();
+                            // 이미 IIFE(즉시실행함수)로 감싸져 있는지 확인
+                            if (content.startsWith('(function()') || content.startsWith('(()') || content.startsWith('!function')) {
+                                s.textContent = old.textContent;
+                            } else {
+                                // IIFE로 감싸서 스코프 격리
+                                s.textContent = `(function(){\n${old.textContent}\n})();`;
+                            }
+                        } else {
+                            s.textContent = old.textContent;
+                        }
+
+                        // 기존 스크립트 제거 후 새 스크립트 추가 (재실행 트리거)
+                        old.remove();
+                        scopeEl.appendChild(s);
+                    } catch (error) {
+                        console.warn('⚠️ 스크립트 실행 오류 (무시됨):', error.message);
+                        // 에러가 발생해도 다음 스크립트는 계속 실행
+                    }
+                });
+            }
+
+            // 페이지 네비게이션 (SPA의 핵심 함수)
+            async function navigate(url, { push = true } = {}) {
+                const container = document.querySelector(CONTENT_SELECTOR);
+                if (!container) return console.error('메인 컨테이너를 찾을 수 없음:', CONTENT_SELECTOR);
+
+                // 로딩 중 표시
+                container.setAttribute('aria-busy', 'true');
+
+                try {
+                    // 1. 새 페이지 HTML 가져오기
+                    const newMainElement = await fetchMain(url);
+
+                    // 2. 이전 페이지 정리 (Bootstrap 컴포넌트 제거 등)
+                    cleanupPreviousPage(container);
+
+                    // 3. Bootstrap 정리 완료 대기
+                    await new Promise(resolve => setTimeout(resolve, 50));
+
+                    // 4. DOM 내용물 교체
+                    container.innerHTML = newMainElement.innerHTML;
+
+                    // 5. 브라우저 히스토리에 URL 추가 (뒤로가기 지원)
+                    if (push) history.pushState({ url }, '', url);
+
+                    // 6. 사이드바 active 상태 및 헤더 타이틀 업데이트
+                    setActiveByUrl(url);
+                    setHeaderTitleByActive();
+
+                    // 7. DOM 렌더링 및 라이브러리 로딩 완료 대기 후 스크립트 실행
+                    await new Promise(resolve => setTimeout(resolve, 150));
+                    reexecuteScripts(container);
+
+                    // 8. 페이지 최상단으로 스크롤
+                    window.scrollTo({ top: 0, behavior: 'instant' });
+                } catch (e) {
+                    // 오류 발생 시 일반 페이지 이동으로 폴백
+                    console.error('네비게이션 오류:', e);
+                    location.href = url;
+                } finally {
+                    // 로딩 상태 제거
+                    container.removeAttribute('aria-busy');
+                }
+            }
+
+            // 사이드바 링크 클릭 이벤트 가로채기 (SPA 동작 활성화)
+            function interceptSidebarLinks() {
+                document.addEventListener('click', (e) => {
+                    const a = e.target.closest(LINK_SELECTOR);
+                    if (!a) return; // 사이드바 링크가 아니면 무시
+
+                    // 새 탭으로 열기나 중클릭은 기본 동작 유지
+                    if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return;
+
+                    const href = a.getAttribute('href');
+                    // 외부 링크는 기본 동작 유지
+                    if (!href || href.startsWith('http')) return;
+
+                    // 기본 동작 취소하고 SPA 네비게이션 실행
+                    e.preventDefault();
+                    navigate(href, { push: true });
+                });
+            }
+
+            // 브라우저 뒤로가기/앞으로가기 버튼 지원
+            window.addEventListener('popstate', (e) => {
+                const url = e.state?.url || location.href;
+                navigate(url, { push: false }); // 히스토리에 추가하지 않고 이동
+            });
+
+            // 초기화: 현재 페이지 활성화 및 링크 인터셉션 시작
+            setActiveByUrl(location.href);
+            setHeaderTitleByActive();
+            interceptSidebarLinks();
+        })();
     });
 </script>

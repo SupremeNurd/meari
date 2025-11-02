@@ -8,7 +8,7 @@
 
     @@include('./include/_sidebar_menu.html')
 
-    <div class="dashboard-container">
+    <div class="dashboard-container" id="app-content">
 
         <section class="dashboard-section section-map">
             <img src="img/meari-map.jpg" alt="메아리 지도">
@@ -16,6 +16,7 @@
 
         <section class="dashboard-section section-list">
             <div class="sensor-list-container">
+
                 <header class="sensor-list-header">
                     <h6>검출된 신호</h6>
                     <div>
@@ -410,119 +411,203 @@
             </div>
         </div>
 
+        <script>
+            (function() {
+                // ===== analyze.html 페이지 초기화 함수 =====
+                function initAnalyzePage() {
+                    console.log('분석 페이지 초기화 중...');
+
+                    // ----- (A) 영구 요소 (페이지 밖에 있는 요소들) -----
+                    const popupBox = document.getElementById('sensor-detail-popup');
+                    const closeButton = document.getElementById('popup-close-btn');
+                    const popupSensorName = document.getElementById('popup-sensor-name');
+                    const popupSensorTime = document.getElementById('popup-sensor-time');
+
+                    // ----- (B) 동적 요소 (현재 페이지 내 요소들) -----
+                    const fixedDropdownElements = document.querySelectorAll('.dropdown-fixed');
+                    const headerDropdownToggles = document.querySelectorAll('.sensor-list-header .dropdown [data-bs-toggle="dropdown"]');
+                    const dataListItems = document.querySelectorAll('.analyze-data-list');
+                    const dismissButtons = document.querySelectorAll('[data-bs-dismiss="dropdown"]');
+
+                    // 안전 장치: analyze 페이지가 아니면 실행 중단
+                    if (!dataListItems || dataListItems.length === 0) {
+                        console.log('분석 페이지가 아님');
+                        return;
+                    }
+
+                    // ----- (C) 이벤트 리스너 및 컴포넌트 초기화 -----
+
+                    // 1. 팝업 닫기 버튼
+                    if (closeButton) {
+                        closeButton.addEventListener('click', function() {
+                            popupBox.classList.remove('show');
+                        });
+                    }
+
+                    // 2. 드롭다운을 고정 위치로 설정 (화면 밖으로 나가지 않도록)
+                    fixedDropdownElements.forEach(function(element) {
+                        const toggleButton = element.querySelector('[data-bs-toggle="dropdown"]');
+                        if (typeof bootstrap !== 'undefined' && toggleButton) {
+                            new bootstrap.Dropdown(toggleButton, {
+                                popperConfig: {
+                                    strategy: 'fixed' // 뷰포트 기준 고정 위치
+                                }
+                            });
+                        }
+                    });
+
+                    // 3. 헤더의 여러 드롭다운 중 하나만 열리도록 상호 배제
+                    headerDropdownToggles.forEach(function(currentToggle) {
+                        currentToggle.addEventListener('show.bs.dropdown', function(event) {
+                            // 다른 드롭다운들은 모두 닫기
+                            headerDropdownToggles.forEach(function(otherToggle) {
+                                if (otherToggle !== event.target) {
+                                    const dropdownInstance = bootstrap.Dropdown.getInstance(otherToggle);
+                                    if (dropdownInstance) {
+                                        dropdownInstance.hide();
+                                    }
+                                }
+                            });
+                        });
+                    });
+
+                    // 4. 드롭다운 내부의 "취소", "확인" 버튼 클릭 시 드롭다운 닫기
+                    dismissButtons.forEach(function(dismissButton) {
+                        dismissButton.addEventListener('click', function(event) {
+                            // 가장 가까운 드롭다운 요소 찾기
+                            let dropdownWrapper = this.closest('.dropdown');
+                            if (dropdownWrapper) {
+                                let toggleButton = dropdownWrapper.querySelector('[data-bs-toggle="dropdown"]');
+                                if (toggleButton) {
+                                    let dropdownInstance = bootstrap.Dropdown.getInstance(toggleButton);
+                                    if (dropdownInstance) {
+                                        dropdownInstance.hide();
+                                    }
+                                }
+                            }
+                        });
+                    });
+
+                    // 5. 분석 데이터 리스트 클릭 시 팝업 열기
+                    dataListItems.forEach(function(item) {
+                        item.addEventListener('click', function() {
+                            // 센서명 가져오기
+                            const collapseItem = this.closest('.dm-collapse-item');
+                            let sensorName = "센서 상세 정보";
+                            if (collapseItem) {
+                                const nameEl = collapseItem.querySelector('.sensor-name');
+                                if (nameEl) {
+                                    sensorName = nameEl.textContent.trim();
+                                }
+                            }
+                            if (popupSensorName) {
+                                popupSensorName.textContent = sensorName;
+                            }
+
+                            // 검출 시간 가져오기
+                            let sensorTime = "시간 정보 없음";
+                            const timeElement = this.querySelector('.analyze-sensor-time');
+                            if (timeElement) {
+                                sensorTime = timeElement.textContent.trim();
+                            }
+                            if (popupSensorTime) {
+                                popupSensorTime.textContent = sensorTime;
+                            }
+
+                            // 팝업 표시
+                            if (popupBox) {
+                                popupBox.classList.add('show');
+                            }
+                        });
+                    });
+
+                    // 6. 달력(Datepicker) 초기화 - jQuery UI 사용
+                    const datePickerElement = document.querySelector('.date-picker .date-picker__calendar');
+
+                    if (datePickerElement && typeof $ !== 'undefined' && $.fn.datepicker) {
+                        try {
+                            // 기존 datepicker 인스턴스 제거 (재초기화 방지)
+                            $(datePickerElement).datepicker('destroy');
+
+                            // jQuery UI Datepicker 초기화
+                            $(datePickerElement).datepicker({
+                                inline: true,                    // 인라인으로 표시
+                                showOtherMonths: true,           // 다른 달 날짜 표시
+                                selectOtherMonths: true,         // 다른 달 날짜 선택 가능
+                                dateFormat: 'yy-mm-dd',          // 날짜 형식
+                                // 한글 텍스트 설정
+                                monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                                monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                                dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+                                dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+                                dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+                                // 날짜 선택 시 콜백
+                                onSelect: function(dateText, inst) {
+                                    console.log('선택된 날짜:', dateText);
+                                }
+                            });
+
+                            console.log('jQuery UI Datepicker 초기화 성공');
+                        } catch (error) {
+                            console.error('Datepicker 초기화 오류:', error);
+                            datePickerElement.innerHTML = '<p class="text-danger small p-2">달력 초기화 실패</p>';
+                        }
+                    } else if (datePickerElement) {
+                        // jQuery 또는 datepicker 플러그인이 없는 경우
+                        console.warn('jQuery 또는 datepicker 플러그인을 찾을 수 없습니다.');
+                        console.log('jQuery:', typeof $);
+                        console.log('$.fn.datepicker:', typeof $ !== 'undefined' && $.fn
+                            ? typeof $.fn.datepicker
+                            : 'undefined'
+                        );
+                    }
+
+                    console.log('분석 페이지 초기화 완료');
+                }
+
+                // ===== 라이브러리 로딩 대기 및 초기화 실행 =====
+                function checkLibrariesAndRun(retryCount = 0) {
+                    const maxRetries = 60; // 최대 3초 대기 (50ms × 60)
+
+                    // Bootstrap, jQuery, datepicker가 모두 로드되었는지 확인
+                    if (typeof bootstrap !== 'undefined' && typeof $ !== 'undefined' && $.fn && $.fn.datepicker) {
+                        console.log('모든 라이브러리 로드 완료 (Bootstrap + jQuery + Datepicker)');
+                        initAnalyzePage();
+                    } else if (retryCount < maxRetries) {
+                        // 아직 로드 안됨 - 50ms 후 재시도
+                        setTimeout(function() {
+                            checkLibrariesAndRun(retryCount + 1);
+                        }, 50);
+                    } else {
+                        // 타임아웃 - 로드 실패
+                        console.error('라이브러리 로드 타임아웃');
+                        console.log('Bootstrap:', typeof bootstrap);
+                        console.log('jQuery:', typeof $);
+                        console.log('$.fn.datepicker:', typeof $ !== 'undefined' && $.fn
+                            ? typeof $.fn.datepicker
+                            : 'undefined'
+                        );
+
+                        // 그래도 초기화 시도 (부분적으로라도 작동하도록)
+                        initAnalyzePage();
+                    }
+                }
+
+                // ===== 스크립트 실행 시작 =====
+                console.log('분석 페이지 스크립트 시작...');
+                checkLibrariesAndRun();
+
+            })();
+        </script>
+
     </div>
 
     @@include('./include/_footer.html')
 
-    <div id="overlayer">
-        <div class="loader-overlay">
-            <div class="dm-spin-dots spin-lg">
-                <span class="spin-dot badge-dot dot-primary"></span>
-                <span class="spin-dot badge-dot dot-primary"></span>
-                <span class="spin-dot badge-dot dot-primary"></span>
-                <span class="spin-dot badge-dot dot-primary"></span>
-            </div>
-        </div>
-    </div>
-    <div class="overlay-dark-sidebar"></div>
-    <div class="customizer-overlay"></div>
 </main>
 
 @@include('./include/_scripts.html')
 
-<script src="assets/theme_assets/js/map.js"></script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-
-        const sensorCards = document.querySelectorAll('.sensor-card');
-        const popupBox = document.getElementById('sensor-detail-popup');
-        const closeButton = document.getElementById('popup-close-btn');
-        const popupSensorName = document.getElementById('popup-sensor-name');
-        const popupSensorTime = document.getElementById('popup-sensor-time');
-
-        let fixedDropdownElements = document.querySelectorAll('.dropdown-fixed');
-        const headerDropdownToggles = document.querySelectorAll('.sensor-list-header .dropdown [data-bs-toggle="dropdown"]');
-        const dataListItems = document.querySelectorAll('.analyze-data-list');
-
-        // 팝업 닫기 버튼 이벤트
-        closeButton.addEventListener('click', function() {
-            popupBox.classList.remove('show');
-        });
-
-        // 드롭다운 'fixed'
-        fixedDropdownElements.forEach(function(element) {
-            var toggleButton = element.querySelector('[data-bs-toggle="dropdown"]');
-            new bootstrap.Dropdown(toggleButton, {
-                popperConfig: {
-                    strategy: 'fixed'
-                }
-            });
-        });
-
-        //드롭다운 상호 배제 로직 (하나 열리면 다른거 닫기)
-        headerDropdownToggles.forEach(function(currentToggle) {
-            currentToggle.addEventListener('show.bs.dropdown', function(event) {
-                headerDropdownToggles.forEach(function(otherToggle) {
-                    if (otherToggle !== event.target) {
-                        const dropdownInstance = bootstrap.Dropdown.getInstance(otherToggle);
-                        if (dropdownInstance) {
-                            dropdownInstance.hide();
-                        }
-                    }
-                });
-            });
-        });
-
-        // 드롭다운 닫기 버튼(취소/확인) 핫와이어링
-        document.querySelectorAll('[data-bs-dismiss="dropdown"]').forEach(function(dismissButton) {
-            dismissButton.addEventListener('click', function(event) {
-                let dropdownWrapper = this.closest('.dropdown');
-                if (dropdownWrapper) {
-                    let toggleButton = dropdownWrapper.querySelector('[data-bs-toggle="dropdown"]');
-                    if (toggleButton) {
-                        let dropdownInstance = bootstrap.Dropdown.getInstance(toggleButton);
-                        if (dropdownInstance) {
-                            dropdownInstance.hide();
-                        }
-                    }
-                }
-            });
-        });
-
-        // analyze-data-list 클릭 이벤트 (팝업 열기)
-        dataListItems.forEach(function(item) {
-            item.addEventListener('click', function() { // 'this'는 클릭된 item (.analyze-data-list)
-
-                // 부모에서 '센서 이름' 가져오기
-                const collapseItem = this.closest('.dm-collapse-item');
-                let sensorName = "센서 상세 정보";
-                if (collapseItem) {
-                    const sensorNameElement = collapseItem.querySelector('.sensor-name');
-                    if (sensorNameElement) {
-                        sensorName = sensorNameElement.textContent.trim();
-                    }
-                }
-                popupSensorName.textContent = sensorName; // 팝업에 센서 이름 설정
-
-                // 클릭된 항목 'this'에서 '검출 시간' 가져오기
-                let sensorTime = "시간 정보 없음"; // 기본값
-                const timeElement = this.querySelector('.analyze-sensor-time'); // 'this'안에서 .analyze-sensor-time 검색
-
-                if (timeElement) {
-                    sensorTime = timeElement.textContent.trim(); // 찾은 시간 텍스트
-                }
-
-                // 팝업의 시간 <span>에 텍스트 설정
-                popupSensorTime.textContent = sensorTime;
-
-                // 팝업 보이기
-                popupBox.classList.add('show');
-            });
-        });
-
-    });
-</script>
 </body>
 
 </html>
