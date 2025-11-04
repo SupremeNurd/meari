@@ -31436,7 +31436,6 @@ Pretendard 폰트 정의
   color: #888;
 }
 
-/* --- <details> 태그의 [open] 속성을 이용한 토글 로직 --- */
 /* 닫혀있을 때 ( [open] 속성이 없을 때 ) */
 .rescue-event-item:not([open]) .rescue-event-item__toggle-plus {
   display: inline;
@@ -31471,6 +31470,44 @@ Pretendard 폰트 정의
   font-weight: 500;
   color: #111;
   margin-right: 5px;
+}
+
+.video-modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.video-modal-content {
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 800px;
+  position: relative;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.video-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #555;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.video-modal-close:hover {
+  color: #000;
 }
 
 .setting-section-list {
