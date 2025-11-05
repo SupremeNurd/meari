@@ -3381,7 +3381,7 @@ ul {
 }
 
 .rescue-wrapper {
-  padding: 74px 0px 22px 122px;
+  padding: 74px 0px 22px 100px;
   transition: var(--transition);
   background-color: var(--contents-bg);
 }
@@ -5890,7 +5890,7 @@ Pretendard 폰트 정의
   height: 100%;
   overflow-y: auto;
   box-shadow: 0 0 30px rgba(var(--light-gray-rgba), 0.1);
-  width: 125px;
+  width: 100px;
   background: var(--color-white);
   padding: 0;
   transition: var(--transition);
@@ -31172,19 +31172,19 @@ Pretendard 폰트 정의
 }
 
 .left-column {
-  flex-basis: 30%;
+  flex-basis: 27%;
   background-color: #f4f5f7;
   padding: 15px;
   min-height: 80vh;
 }
 
 .center-column {
-  flex-basis: 40%;
-  padding: 15px;
+  flex-basis: 46%;
+  padding: 15px 0;
 }
 
 .right-column {
-  flex-basis: 30%;
+  flex-basis: 27%;
   padding: 15px;
   min-height: 84vh;
   max-height: 500px;
