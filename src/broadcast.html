@@ -265,7 +265,8 @@
                 <button id="popup-close-btn" aria-label="닫기">&times;</button>
             </div>
         </div>
-        <!--모달영역-->
+
+        <!--방송설정 모달영역-->
         <div class="modal-basic modal fade show" id="modal-basic" tabindex="-1" role="dialog" aria-hidden="true">
 
             <div class="modal-dialog modal-lg" role="document">
@@ -298,12 +299,12 @@
                                                     <span class="sensor-name">휴대용 센서 1호기</span>
                                                 </div>
                                             </div>
-                                            <span class="sensor-modal-checkmark">
-                                            <div class="checkbox-theme-default custom-checkbox ">
-                                                <input class="checkbox" type="checkbox" id="check-1">
-                                                <label for="check-1" class="p-lg-0"></label>
-                                            </div>
-                                        </span>
+<!--                                            <span class="sensor-modal-checkmark">-->
+<!--                                            <div class="checkbox-theme-default custom-checkbox ">-->
+<!--                                                <input class="checkbox" type="checkbox" id="check-1">-->
+<!--                                                <label for="check-1" class="p-lg-0"></label>-->
+<!--                                            </div>-->
+<!--                                        </span>-->
                                         </div>
 
                                     </button>
@@ -327,12 +328,6 @@
                                                     <span class="sensor-name">휴대용 센서 2호기</span>
                                                 </div>
                                             </div>
-                                            <span class="sensor-modal-checkmark">
-                                            <div class="checkbox-theme-default custom-checkbox ">
-                                                <input class="checkbox" type="checkbox" id="check-2">
-                                                <label for="check-2" class="p-lg-0"></label>
-                                            </div>
-                                        </span>
                                         </div>
 
                                     </button>
@@ -356,12 +351,6 @@
                                                     <span class="sensor-name">휴대용 센서 3호기</span>
                                                 </div>
                                             </div>
-                                            <span class="sensor-modal-checkmark">
-                                            <div class="checkbox-theme-default custom-checkbox ">
-                                                <input class="checkbox" type="checkbox" id="check-3">
-                                                <label for="check-3" class="p-lg-0"></label>
-                                            </div>
-                                        </span>
                                         </div>
 
                                     </button>
@@ -385,12 +374,6 @@
                                                     <span class="sensor-name">휴대용 센서 4호기</span>
                                                 </div>
                                             </div>
-                                            <span class="sensor-modal-checkmark">
-                                            <div class="checkbox-theme-default custom-checkbox ">
-                                                <input class="checkbox" type="checkbox" id="check-4">
-                                                <label for="check-4" class="p-lg-0"></label>
-                                            </div>
-                                        </span>
                                         </div>
                                     </button>
                                 </div>
@@ -413,12 +396,6 @@
                                                     <span class="sensor-name">투입형 센서 1호기</span>
                                                 </div>
                                             </div>
-                                            <span class="sensor-modal-checkmark">
-                                            <div class="checkbox-theme-default custom-checkbox ">
-                                                <input class="checkbox" type="checkbox" id="check-5">
-                                                <label for="check-5" class="p-lg-0"></label>
-                                            </div>
-                                        </span>
                                         </div>
                                     </button>
                                 </div>
@@ -441,12 +418,6 @@
                                                     <span class="sensor-name">투입형 센서 2호기</span>
                                                 </div>
                                             </div>
-                                            <span class="sensor-modal-checkmark">
-                                            <div class="checkbox-theme-default custom-checkbox ">
-                                                <input class="checkbox" type="checkbox" id="check-6">
-                                                <label for="check-6" class="p-lg-0"></label>
-                                            </div>
-                                        </span>
                                         </div>
                                     </button>
                                 </div>
@@ -469,12 +440,6 @@
                                                     <span class="sensor-name">투입형 센서 3호기</span>
                                                 </div>
                                             </div>
-                                            <span class="sensor-modal-checkmark">
-                                            <div class="checkbox-theme-default custom-checkbox ">
-                                                <input class="checkbox" type="checkbox" id="check-7">
-                                                <label for="check-7" class="p-lg-0"></label>
-                                            </div>
-                                        </span>
                                         </div>
                                     </button>
                                 </div>
@@ -497,12 +462,6 @@
                                                     <span class="sensor-name">투입형 센서 4호기</span>
                                                 </div>
                                             </div>
-                                            <span class="sensor-modal-checkmark">
-                                            <div class="checkbox-theme-default custom-checkbox ">
-                                                <input class="checkbox" type="checkbox" id="check-8">
-                                                <label for="check-8" class="p-lg-0"></label>
-                                            </div>
-                                        </span>
                                         </div>
                                     </button>
                                 </div>
@@ -743,7 +702,7 @@
                     // ----- (B) 페이지 내 동적 요소들 -----
                     const sensorCards = document.querySelectorAll('.sensor-modal-card');
                     const allIntervalGroups = document.querySelectorAll('.broadcast-modal-interval-group');
-                    const allCheckboxes = document.querySelectorAll('.sensor-modal-card .checkbox');
+                    // const allCheckboxes = document.querySelectorAll('.sensor-modal-card .checkbox');
 
                     // ----- (C) 모달 요소들 (body에 있음) -----
                     const basicModal = document.getElementById('modal-basic');
@@ -870,40 +829,35 @@
                         broadcastAddBtn.dataset.modalListenerAttached = 'true';
                     }
 
-                    // 3. 센서 카드 클릭 - 체크박스 토글
-                    sensorCards.forEach(function(card) {
-                        const checkbox = card.querySelector('.checkbox');
-                        if (checkbox) {
-                            // 초기 체크 상태를 active 클래스와 동기화
-                            checkbox.checked = card.classList.contains('active');
-                        }
+                    // 3. 센서 카드 클릭 - 체크박스 토글 (체크박스 삭제)
+                    sensorCards.forEach(function (card) {
                         if (!card.dataset.clickListenerAttached) {
-                            card.addEventListener('click', function(event) {
-                                // 체크박스 영역을 클릭한 경우는 제외 (중복 토글 방지)
-                                if (!event.target.closest('.sensor-modal-checkmark')) {
-                                    const checkbox = this.querySelector('.checkbox');
-                                    if (checkbox) {
-                                        checkbox.checked = !checkbox.checked;
-                                        checkbox.dispatchEvent(new Event('change'));
-                                    }
-                                }
+                            card.addEventListener('click', function (event) {
+                                // (필요 시) 특정 영역 클릭 제외 로직 유지
+                                if (event.target.closest('.sensor-modal-checkmark')) return;
+
+                                // 다중 선택 허용
+                                this.classList.toggle('active');
+
+                                // 단일 선택만 허용시 (추후 필요시)
+                                // sensorCards.forEach(c => { if (c !== this) c.classList.remove('active'); });
                             });
                             card.dataset.clickListenerAttached = 'true';
                         }
                     });
 
                     // 4. 체크박스 상태 변경 시 카드 active 클래스 토글
-                    allCheckboxes.forEach(function(checkbox) {
-                        if (!checkbox.dataset.changeListenerAttached) {
-                            checkbox.addEventListener('change', function() {
-                                const parentCard = this.closest('.sensor-modal-card');
-                                if (parentCard) {
-                                    parentCard.classList.toggle('active', this.checked);
-                                }
-                            });
-                            checkbox.dataset.changeListenerAttached = 'true';
-                        }
-                    });
+                    // allCheckboxes.forEach(function(checkbox) {
+                    //     if (!checkbox.dataset.changeListenerAttached) {
+                    //         checkbox.addEventListener('change', function() {
+                    //             const parentCard = this.closest('.sensor-modal-card');
+                    //             if (parentCard) {
+                    //                 parentCard.classList.toggle('active', this.checked);
+                    //             }
+                    //         });
+                    //         checkbox.dataset.changeListenerAttached = 'true';
+                    //     }
+                    // });
 
                     // 5. 체크박스 영역 클릭 시 이벤트 전파 중단 (카드 클릭과 충돌 방지)
                     document.querySelectorAll('.sensor-modal-checkmark').forEach(function(checkmarkArea) {
